@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
+import cloudinary from "../lib/cloudinary.js";
 import { generateToken } from "../lib/utils.js";
 
 export const signup = async (req, res)=>{
@@ -68,33 +69,48 @@ export const login = async (req, res)=>{
         
     }
 };
-
-// In your auth.controller.js file
 export const googleAuth = async (req, res) => {
     try {
         const user = req.user; 
-        const token = generateToken(user._id, res);
+        generateToken(user._id, res);
         res.status(200).json({
-            message: "You are logged in!",
-            token,
-            user: {
-                _id: user._id,
-                name: user.name,
-                email: user.email,
-                profilepic: user.profilepic
-            }
+            message: "USER LOGGED IN"
         });
     } catch (error) {
         console.error("Error during Google authentication:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
-
 export const logout = (req, res)=>{
     try {
         res.cookie("myToken","", {maxAge:"0"})
         res.status(200).json({message: "User Logged out Succefully"});
     } catch (error) {
         
+    }
+};
+export const updateProfile = async(req, res)=>{
+    try {
+        const {profilepic} =req.body
+        const userId = req.user._id;
+
+        if(!profilepic){
+            res.status(400).json({message: "Profile Pic Not found"});
+        }
+
+        const uploadResponse = await cloudinary.uploader.upload(profilepic);
+        const uploadUser = await User.findByIdAndUpdate(userId, {profilepic:uploadResponse.secure_url}, {new:true})
+        res.status(200).json(uploadUser)
+    } catch (error) {
+        console.log("Error while uploading: ", error)
+        res.status(500).json({message: "Internal Server Error"});
+    }
+};
+export const checkAuth = (req, res) =>{
+    try {
+        res.status(200).json(req.user);
+    } catch (error) {
+        console.log("Error in Authentication Check", error)
+        res.status(500).json({message: "Internal Server Error"});
     }
 };

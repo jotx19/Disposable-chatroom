@@ -1,10 +1,12 @@
 import express from "express"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
-import { configurePassport, passport } from "./lib/passport.js";
+import authRoute from "./routes/auth.route.js"
+import messageRoute from "./routes/auth.route.js"
+import cors from "cors"
 
+import { configurePassport, passport } from "./lib/passport.js";
 import { connectDB } from "./lib/db.js";
-import authRoute from "./routes/auth.route.js";
 import { googleAuth } from "./controllers/auth.controller.js";
 
 dotenv.config()
@@ -15,7 +17,13 @@ const PORT = process.env.PORT
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+}))
+
 app.use("/api/auth", authRoute);
+app.use("/api/message", messageRoute);
 
 //Testing
 app.get("/", (req, res) => {
