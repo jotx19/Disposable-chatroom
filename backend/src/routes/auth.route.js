@@ -1,9 +1,11 @@
 import express from "express"
-import { signup, login, logout, updateProfile, checkAuth } from "../controllers/auth.controller.js";
 import passport from "passport";
+import { signup, login, logout, updateProfile, checkAuth } from "../controllers/auth.controller.js";
 import { googleAuth } from "../controllers/auth.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
+import { configurePassport } from "../lib/passport.js";
 
+configurePassport();
 const router = express.Router()
 
 router.post("/signup",signup);

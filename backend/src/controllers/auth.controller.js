@@ -73,9 +73,7 @@ export const googleAuth = async (req, res) => {
     try {
         const user = req.user; 
         generateToken(user._id, res);
-        res.status(200).json({
-            message: "USER LOGGED IN"
-        });
+        res.redirect(process.env.CLIENT_URL)
     } catch (error) {
         console.error("Error during Google authentication:", error);
         res.status(500).json({ message: "Internal server error" });
