@@ -83,5 +83,5 @@ export const useAuthStore = create((set) => ({
     } finally {
       set({ isLoggingInWithGoogle: false });
     }
-  }
+  },
 }));

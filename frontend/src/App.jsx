@@ -11,6 +11,7 @@ import { Toaster } from 'react-hot-toast';
 import {Routes, Route, Navigate} from "react-router-dom";
 import { useAuthStore } from './store/useAuthStore';
 import { Loader } from 'lucide-react';
+import ChatBoxPage from './Pages/ChatBoxPage';
 
 const App = () => {
   const {authUser, checkAuth, isCheckingAuth} = useAuthStore();
@@ -39,6 +40,7 @@ const App = () => {
         <Route path='/setings' element={<SettingsPage/>}/>
         <Route path='/profile' element={authUser ? <ProfilePage/>: <Navigate to= "/login"/>}/>
         <Route path='/chatroom' element={<ChatRoomPage/>}/>
+        <Route path='/chat-box' element={<ChatBoxPage/>}/>
       </Routes>
 
       <Toaster position="bottom-center"/>

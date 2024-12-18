@@ -1,6 +1,13 @@
 import Room from "../models/room.model.js";
-import { v4 as uuidv4 } from "uuid"; 
 
+const generateRoomCode = () => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let roomCode = "";
+  for (let i = 0; i < 5; i++) {
+    roomCode += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return roomCode;
+};
 export const createRoom = async (req, res) => {
   try {
     const { name } = req.body;
@@ -9,7 +16,13 @@ export const createRoom = async (req, res) => {
       return res.status(400).json({ message: "Room name is required" });
     }
 
-    const roomCode = uuidv4();
+    let roomCode;
+    let roomExists;
+
+    do {
+      roomCode = generateRoomCode();
+      roomExists = await Room.findOne({ roomCode });
+    } while (roomExists);
 
     const room = new Room({
       name,
