@@ -81,9 +81,9 @@ const Chatroom = () => {
 
             {/* OR Divider */}
             <div className="flex items-center justify-center my-4">
-              <div className="border-t border-gray-500 w-2/4 sm:w-1/4"></div>
+              <div className="border-t border-gray-500 md:w-2/4 sm:w-1/4"></div>
               <span className="mx-4 text-white text-xs sm:text-sm">OR</span>
-              <div className="border-t border-gray-500 w-2/4 sm:w-1/4"></div>
+              <div className="border-t border-gray-500 md:w-2/4 sm:w-1/4"></div>
             </div>
 
             {/* Create Room Section */}
