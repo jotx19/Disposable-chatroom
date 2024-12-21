@@ -20,7 +20,7 @@ const configurePassport = () => {
               email: profile.emails[0].value,
               profilepic: profile.photos[0]?.value || "",
             });
-          }
+          }  
           done(null, user);
         } catch (error) {
           done(error, null);

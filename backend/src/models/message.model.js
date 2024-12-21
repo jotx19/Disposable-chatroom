@@ -1,31 +1,24 @@
 import mongoose from "mongoose";
+import Room from "./room.model.js";
+import User from "./user.model.js";
 
 const messageSchema = new mongoose.Schema(
-    {
-      senderId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      receiverId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      text: {
-        type: String,
-      },
-      image: {
-        type: String,
-      },
-      roomId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Room", 
-        required: true,
-      },
-    },
-    { timestamps: true }
-  );  
+  {
+    room: {
+         type: mongoose.Schema.Types.ObjectId, ref: "Room", required: true 
+        },
+    sender: {
+         type: mongoose.Schema.Types.ObjectId, ref: "User" 
+        },
+    content: {
+         type: String, required: true 
+        },
+    image: {
+         type: String, required: false 
+        },
+  },
+  { timestamps: true }
+);
 
 const Message = mongoose.model("Message", messageSchema);
 export default Message;

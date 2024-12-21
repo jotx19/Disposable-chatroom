@@ -2,8 +2,8 @@ import express from "express"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import authRoute from "./routes/auth.route.js"
-import messageRoute from "./routes/message.route.js"
 import roomRoute from "./routes/room.route.js"
+import messageRoute from "./routes/message.route.js"
 import cors from "cors"
 
 import { configurePassport, passport } from "./lib/passport.js";
@@ -26,8 +26,8 @@ app.use(cors({
 }))
 
 app.use("/api/auth", authRoute);
-app.use("/api/message", messageRoute);
 app.use("/api/room", roomRoute);
+app.use("/api/message", messageRoute);
 
 //Testing
 // app.get("/", (req, res) => {
