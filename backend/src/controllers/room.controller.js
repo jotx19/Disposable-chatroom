@@ -1,78 +1,124 @@
-import Room from '../models/room.model.js';
+import Room from "../models/room.model.js";
 
-const generateJoinCode = () => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let code = '';
+const generateRoomCode = () => {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let roomCode = "";
   for (let i = 0; i < 8; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.length);
-    code += chars[randomIndex];
+    roomCode += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return code;
+  return roomCode;
 };
 
 export const createRoom = async (req, res) => {
   try {
-    const { name, participants = [] } = req.body;
-    const user = req.user;
+    const { name } = req.body;
 
     if (!name) {
-      return res.status(400).json({ error: 'Room name is required' });
+      return res.status(400).json({ message: "Room name is required" });
     }
 
-    const joinCode = generateJoinCode();
-    const uniqueParticipants = Array.from(new Set([user._id, ...participants]));
+    let roomCode;
+    let roomExists;
+
+    do {
+      roomCode = generateRoomCode();
+      roomExists = await Room.findOne({ roomCode });
+    } while (roomExists);
 
     const room = new Room({
       name,
-      createdBy: user._id,
-      participants: uniqueParticipants,
-      joinCode,
+      createdBy: req.user._id,
+      members: [req.user._id],
+      roomCode,
     });
 
     await room.save();
+
     res.status(201).json({
-      message: 'Room created successfully',
-      room: {
-        id: room._id,
-        name: room.name,
-        joinCode: room.joinCode,
-      },
+      message: "Room created successfully",
+      roomCode: room.roomCode,
+      roomId: room._id,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create room' });
+    console.error("Error creating room:", error);
+    res.status(500).json({ message: "Unable to create room" });
   }
 };
 
 export const joinRoom = async (req, res) => {
   try {
-    const { joinCode } = req.body;
-    const user = req.user;
+    const { roomCode } = req.body;
 
-    const room = await Room.findOne({ joinCode });
+    if (!roomCode) {
+      return res.status(400).json({ message: "Room code is required" });
+    }
+
+    const room = await Room.findOne({ roomCode });
+
     if (!room) {
-      return res.status(404).json({ error: 'Room not found or invalid join code' });
+      return res.status(404).json({ message: "Room not found" });
     }
 
-    if (room.participants.includes(user._id)) {
-      return res.status(400).json({ error: 'You are already in this room' });
+    if (room.members.includes(req.user._id)) {
+      return res.status(400).json({ message: "You are already in this room" });
     }
 
-    room.participants.push(user._id);
+    room.members.push(req.user._id);
     await room.save();
 
-    res.status(200).json({ message: 'Successfully joined the room', room });
+    res.status(200).json({
+      message: "Successfully joined the room",
+      roomId: room._id,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to join room' });
+    console.error("Error joining room:", error);
+    res.status(500).json({ message: "Unable to join room" });
   }
 };
 
 export const getUserRooms = async (req, res) => {
   try {
-    const user = req.user;
-    const rooms = await Room.find({ participants: user._id }).populate('participants', 'name email');
+    const rooms = await Room.find({ members: req.user._id }).populate("createdBy", "name email");
+
+    if (rooms.length === 0) {
+      return res.status(404).json({ message: "No rooms found" });
+    }
 
     res.status(200).json(rooms);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to get rooms' });
+    console.error("Error fetching rooms:", error);
+    res.status(500).json({ message: "Unable to fetch rooms" });
+  }
+};
+
+export const removeUser = async (req, res) => {
+  try {
+    const { roomCode, userId } = req.body;
+
+    if (!roomCode || !userId) {
+      return res.status(400).json({ message: "Room code and userId are required" });
+    }
+
+    const room = await Room.findOne({ roomCode });
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    if (!room.members.includes(userId)) {
+      return res.status(400).json({ message: "User is not a member of this room" });
+    }
+
+    room.members = room.members.filter(member => member.toString() !== userId);
+
+    await room.save();
+
+    res.status(200).json({
+      message: "User successfully removed from the room",
+      roomId: room._id,
+    });
+  } catch (error) {
+    console.error("Error removing user from room:", error);
+    res.status(500).json({ message: "Unable to remove user from room" });
   }
 };

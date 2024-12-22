@@ -1,36 +1,52 @@
 import { create } from "zustand";
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "../lib/axios.js";
+import toast from "react-hot-toast";
 
 export const useRoomStore = create((set) => ({
   rooms: [],
-  isLoading: false,
-
-  createRoom: async (roomName) => {
+  isCreatingRoom: false,
+  isJoiningRoom: false,
+  createdRoomCode: "",  // Add this to initialize createdRoomCode
+  
+  fetchRooms: async () => {
     try {
-      set({ isLoading: true });
-      const response = await axiosInstance.post("/room/create", { name: roomName });
-      set({ isLoading: false });
-      return response.data.roomCode;
+      const res = await axiosInstance.get("/rooms");
+      set({ rooms: res.data });
     } catch (error) {
-      set({ isLoading: false });
-      console.error("Error creating room:", error);
-      return null;
+      toast.error("Failed to fetch rooms");
     }
   },
-  
+
+  createRoom: async (data) => {
+    set({ isCreatingRoom: true });
+    try {
+      const res = await axiosInstance.post("/room/create", data);
+      if (res.data?.message) {
+        toast.success(res.data.message);
+      }
+      set({ createdRoomCode: res.data.roomCode });  // Store roomCode in Zustand state
+      return res.data.room;
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to create room");
+    } finally {
+      set({ isCreatingRoom: false });
+    }
+  },
 
   joinRoom: async (roomCode) => {
+    set({ isJoiningRoom: true });
     try {
-      set({ isLoading: true });
-      console.log("Joining room with code:", roomCode); // Debug log
-      const response = await axiosInstance.post("/room/join", { roomCode }); 
-      set({ isLoading: false });
-      return true;
+      const res = await axiosInstance.post("/room/join", { roomCode });
+      
+      if (res.data?.message) {
+        toast.success(res.data.message);
+      }
+  
+      return res.data.room;
     } catch (error) {
-      set({ isLoading: false });
-      console.error("Error joining room:", error);
-      return false;
+      toast.error(error.response?.data?.message || "Failed to join room");
+    } finally {
+      set({ isJoiningRoom: false });
     }
   },
-  
 }));

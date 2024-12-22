@@ -1,5 +1,4 @@
-import mongoose from "mongoose";
-import User from "./user.model.js";
+import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema(
   {
@@ -9,12 +8,18 @@ const roomSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-    joinCode: { type: String, unique: true, required: true }, // Unique alphanumeric code
+    members: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    roomCode: { type: String, unique: true, required: true },
   },
   { timestamps: true }
 );
 
-const Room = mongoose.model("Room", roomSchema);
+roomSchema.index({ roomCode: 1 }, { unique: true }); // Make sure this index is enforced
 
+const Room = mongoose.model("Room", roomSchema);
 export default Room;
