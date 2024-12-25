@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="shadow-lg rounded-lg bg-[#121212] p-6 md:p-10 w-full max-w-lg">
+      <div className="shadow-lg rounded-lg p-6 md:p-10 w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">

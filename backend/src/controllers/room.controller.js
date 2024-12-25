@@ -78,7 +78,9 @@ export const joinRoom = async (req, res) => {
 
 export const getUserRooms = async (req, res) => {
   try {
-    const rooms = await Room.find({ members: req.user._id }).populate("createdBy", "name email");
+    const rooms = await Room.find({ members: req.user._id })
+      .populate("createdBy", "name email picture") 
+      .populate("members", "name email picture"); 
 
     if (rooms.length === 0) {
       return res.status(404).json({ message: "No rooms found" });

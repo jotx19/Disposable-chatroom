@@ -25,7 +25,7 @@ const App = () => {
   if(isCheckingAuth && !authUser) 
     return (
     <div className='flex h-screen justify-center items-center'>
-      <Loader className='size-10 animate-spin'/>
+      <Loader className='size-10 text-white animate-spin'/>
     </div>
   );
 
@@ -40,7 +40,7 @@ const App = () => {
         <Route path='/setings' element={<SettingsPage/>}/>
         <Route path='/profile' element={authUser ? <ProfilePage/>: <Navigate to= "/login"/>}/>
         <Route path='/chatroom' element={authUser ? <ChatRoomPage/>: <Navigate to= "/login"/>}/>
-        <Route path='/chat-box' element={<ChatBoxPage/>}/>
+        <Route path='/chatbox' element={authUser ? <ChatBoxPage/>: <Navigate to= "/login"/>}/>
       </Routes>
 
       <Toaster position="bottom-center"/>

@@ -29,7 +29,6 @@ const ChatRoomPage = () => {
     }
   };
 
-  // Function to copy room code to clipboard
   const copyToClipboard = () => {
     if (createdRoomCode) {
       navigator.clipboard.writeText(createdRoomCode)
@@ -42,7 +41,7 @@ const ChatRoomPage = () => {
     }
   };
 
-  // Function to share room code using the Web Share API (if supported)
+
   const shareRoomCode = () => {
     if (navigator.share) {
       navigator.share({
@@ -94,7 +93,6 @@ const ChatRoomPage = () => {
           {isCreatingRoom ? "Creating..." : "Create Room"}
         </button>
 
-        {/* Conditionally render the room code */}
         {createdRoomCode && (
           <div className="mt-4 text-white flex flex-col justify-center">
             <p className="text-gray-400 flex justify-center text-xs sm:text-sm">Here's your room code:</p>
@@ -102,13 +100,11 @@ const ChatRoomPage = () => {
               <span className="bg-gray-800 text-white py-2 px-4 rounded-xl text-sm">
                 {createdRoomCode}
               </span>
-              {/* Lucide Copy Icon */}
               <Copy
                 className="ml-2 text-white cursor-pointer"
                 onClick={copyToClipboard}
                 size={20} // Set the size of the Copy icon
               />
-              {/* Lucide Share Icon for sharing */}
               <Share
                 className="ml-2 text-white cursor-pointer"
                 onClick={shareRoomCode}

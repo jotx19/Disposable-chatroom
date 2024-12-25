@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.post('/create',protectRoute, createRoom); 
 router.post('/join',protectRoute, joinRoom);
-router.get('/rooms',protectRoute, getUserRooms); 
+router.get('/users',protectRoute, getUserRooms); 
 
 export default router;

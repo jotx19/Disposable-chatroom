@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link } from "react-router-dom";
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from "lucide-react";
+import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react"; // Import Eye and EyeOff icons
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,7 +10,7 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { login, isLoggingIn, loginWithGoogle, isLoggingInWithGoogle } = useAuthStore(); 
+  const { login, isLoggingIn, loginWithGoogle, isLoggingInWithGoogle } = useAuthStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="shadow-lg rounded-lg bg-[#121212] p-6 md:p-10 w-full max-w-lg">
+      <div className="shadow-lg rounded-lg p-6 md:p-10 w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
@@ -58,7 +58,11 @@ const LoginPage = () => {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none text-sm md:text-base"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? (
+                <EyeOff className="h-5 w-5 text-gray-400" /> // EyeOff icon when password is visible
+              ) : (
+                <Eye className="h-5 w-5 text-gray-400" /> // Eye icon when password is hidden
+              )}
             </button>
           </div>
 
@@ -85,13 +89,14 @@ const LoginPage = () => {
             <hr className="flex-grow border-gray-300" />
           </div>
 
+          {/* Google Sign-in Button */}
           <button
             className="bg-gray-200 text-black py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center gap-2 hover:bg-gray-300 transition text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();
-              loginWithGoogle(); 
+              loginWithGoogle();
             }}
-            disabled={isLoggingInWithGoogle} 
+            disabled={isLoggingInWithGoogle}
           >
             {isLoggingInWithGoogle ? (
               <>
@@ -99,7 +104,10 @@ const LoginPage = () => {
                 Logging in with Google...
               </>
             ) : (
-              <span>Sign in with Google</span>
+              <>
+                <User className="h-5 w-5 text-black" /> {/* Circle user icon */}
+                <span>Sign in with Google</span>
+              </>
             )}
           </button>
         </form>
