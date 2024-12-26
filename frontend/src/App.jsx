@@ -14,13 +14,14 @@ import { Loader } from 'lucide-react';
 import ChatBoxPage from './Pages/ChatBoxPage';
 
 const App = () => {
-  const {authUser, checkAuth, isCheckingAuth} = useAuthStore();
+  const {authUser, checkAuth, isCheckingAuth, onlineUsers} = useAuthStore();
 
   useEffect(() =>{
     checkAuth();
   }, [checkAuth]);
 
   console.log({authUser});
+  console.log({onlineUsers});
 
   if(isCheckingAuth && !authUser) 
     return (

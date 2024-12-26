@@ -9,7 +9,10 @@ export default {
       fontFamily: {
         custom: ['custom', 'sans-serif'],
       },
+      
     },
   },
-  plugins: [],
+  plugins: [
+    // require('daisyui'),
+  ],
 }

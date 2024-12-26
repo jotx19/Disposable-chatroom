@@ -1,10 +1,12 @@
 import Message from '../models/message.model.js';
 import Room from '../models/room.model.js';
 import cloudinary from '../lib/cloudinary.js';
+import { getReceiverSocketId } from '../lib/socket.js';
+import { io } from '../lib/socket.js';
 
 export const sendMessage = async (req, res) => {
   try {
-    const { roomId, content, image } = req.body;
+    const { roomId, text, image } = req.body;
     const user = req.user;
 
     const room = await Room.findById(roomId);
@@ -25,16 +27,21 @@ export const sendMessage = async (req, res) => {
     const message = new Message({
       room: roomId,
       sender: user._id,
-      content,
+      text,
       image: imageUrl,
     });
 
     await message.save();
+
+    // Broadcast to all room participants
+    io.to(roomId).emit('message', message);
+
     res.status(201).json(message);
   } catch (error) {
     res.status(500).json({ error: 'Failed to send message' });
   }
 };
+
 
 export const getRoomMessages = async (req, res) => {
   try {

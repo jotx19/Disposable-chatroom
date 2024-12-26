@@ -4,7 +4,7 @@ import { getRoomMessages, sendMessage } from '../controllers/message.controller.
 
 const router = express.Router();
 
-router.post('/sendMessage', protectRoute, sendMessage);
+router.post('/:roomId/sendMessage', protectRoute, sendMessage);
 router.get('/:roomId/messages', protectRoute, getRoomMessages); 
 
 export default router;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRoomStore } from "../store/useRoomStore";
-import { Copy, Share } from "lucide-react"; // Import the Copy and Share2 icons from lucide-react
+import { Copy, Share } from "lucide-react";
 
 const ChatRoomPage = () => {
   const [joinCode, setJoinCode] = useState("");

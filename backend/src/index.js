@@ -6,14 +6,15 @@ import roomRoute from "./routes/room.route.js"
 import messageRoute from "./routes/message.route.js"
 import cors from "cors"
 
+import { app, server } from "./lib/socket.js";
 import { configurePassport, passport } from "./lib/passport.js";
 import { connectDB } from "./lib/db.js";
 import { googleAuth } from "./controllers/auth.controller.js";
 
 dotenv.config()
 configurePassport();
-const app = express();
 const PORT = process.env.PORT
+
 
 app.use(express.json());
 app.use(cookieParser());
@@ -40,7 +41,7 @@ app.get("/auth/google/callback",
 );
 
 
-app.listen(process.env.PORT, ()=>{
+server.listen(process.env.PORT, ()=>{
     console.log("Server is running: ",PORT);
     connectDB();
 })

@@ -69,7 +69,7 @@ export const useRoomStore = create((set) => ({
         },
       }));
       set({ userRooms });
-      console.log("Fetched user rooms:", userRooms); // Log the user rooms to the console
+      console.log("Fetched user rooms:", userRooms);
     } catch (error) {
       console.error("Error fetching user rooms:", error);
       toast.error("Failed to fetch user rooms");
