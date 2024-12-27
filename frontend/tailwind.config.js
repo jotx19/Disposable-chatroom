@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         custom: ['custom', 'sans-serif'],
+        futuras: ['futuras'],
       },
       
     },

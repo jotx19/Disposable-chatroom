@@ -7,7 +7,7 @@ const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage, selectedRoom } = useChatStore();  // Get selectedRoom from the store
+  const { sendMessage, selectedRoom } = useChatStore(); // Get selectedRoom from the store
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -45,6 +45,7 @@ const MessageInput = () => {
         text: text.trim() || null, // Set text to null if empty
         image: imagePreview || null, // Ensure image is null if not selected
         roomId: selectedRoom._id, // Pass roomId from selectedRoom
+        senderId: "loggedInUserId", // Replace with the actual user's ID
       });
 
       // Clear form after sending the message

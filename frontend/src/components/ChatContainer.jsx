@@ -11,24 +11,23 @@ const ChatContainer = () => {
     useChatStore();
   const { authUser } = useAuthStore();
 
-  // State to hold the current message being typed
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
     if (selectedRoom) {
       getMessages(selectedRoom._id);
     }
-  }, [selectedRoom?._id, getMessages]);
+  }, [selectedRoom?._id, getMessages, authUser]);
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
 
-    // Create a new message object
     const messageData = {
       text: newMessage,
       sender: authUser,
       roomId: selectedRoom._id,
     };
+
     sendMessage(messageData);
 
     setNewMessage("");
@@ -55,19 +54,17 @@ const ChatContainer = () => {
               message.sender._id === authUser._id ? "justify-end" : "justify-start"
             }`}
           >
-            <div className="flex items-start space-x-2">
-              <div className="w-10 h-10 rounded-full border">
-                <img
-                  src={
-                    message.sender._id === authUser._id
-                      ? authUser.profilePic || "/avatar.png"
-                      : "/avatar.png"
-                  }
-                  alt="profile pic"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-              <div className="flex flex-col space-y-2 max-w-xs">
+            <div className={`flex items-start space-x-2 max-w-xs`}>
+              {message.sender._id !== authUser._id && (
+                <div className="w-10 h-10 rounded-full border">
+                  <img
+                    src={message.sender.profilePic || "/avatar.png"}
+                    alt="profile pic"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+              )}
+              <div className="flex flex-col space-y-2">
                 <div
                   className={`px-4 py-2 rounded-lg ${
                     message.sender._id === authUser._id

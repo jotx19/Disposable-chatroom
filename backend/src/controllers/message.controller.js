@@ -55,3 +55,23 @@ export const getRoomMessages = async (req, res) => {
     res.status(500).json({ error: 'Failed to get messages' });
   }
 };
+
+export const deleteUserMessages = async (req, res) => {
+  try {
+    const user = req.user; 
+
+    if (!user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const result = await Message.deleteMany({ sender: user._id });
+
+    res.status(200).json({ 
+      message: 'All messages from the user have been deleted', 
+      deletedCount: result.deletedCount 
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete messages' });
+  }
+};
+
