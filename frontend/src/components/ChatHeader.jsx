@@ -13,7 +13,7 @@ const ChatHeader = () => {
   const onlineCount = selectedRoom.members.filter(member => onlineUsers.includes(member._id)).length;
 
   return (
-    <div className="border-b border-base-300">
+    <div className="bg-[#171717] rounded-r-2xl border-base-300">
       <div className="flex items-center justify-between p-2.5">
         <div className="flex items-center gap-3">
           <h3 className="font-medium uppercase">

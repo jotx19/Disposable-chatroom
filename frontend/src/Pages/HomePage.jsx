@@ -19,7 +19,7 @@ const HomePage = () => {
 
         <div className="flex flex-row justify-center content-center gap-4 mt-6">
           <Link
-            to="/explore"
+            to="/chatbox"
             className="w-40 h-12 flex justify-center items-center bg-white rounded-3xl text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white transition duration-200"
           >
             <span className="text-lg font-bold">Explore</span>

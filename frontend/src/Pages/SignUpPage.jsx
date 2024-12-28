@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
+import { Eye, EyeOff, Layers, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
@@ -35,11 +35,11 @@ const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="shadow-lg rounded-lg p-6 md:p-10 w-full max-w-lg">
+      <div className="shadow-lg bg-[#171717] rounded-lg p-6 md:p-10 w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
-              <MessageSquare className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
+              <Layers className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white">Create Account</h1>
             <p className="text-white text-sm md:text-base">Get started with your free account</p>

@@ -124,3 +124,41 @@ export const removeUser = async (req, res) => {
     res.status(500).json({ message: "Unable to remove user from room" });
   }
 };
+// room expiry chk
+export const getRoomExpirationTime = async (req, res) => {
+  try {
+    const { roomCode } = req.params;
+
+    if (!roomCode) {
+      return res.status(400).json({ message: "Room code is required" });
+    }
+
+    const room = await Room.findOne({ roomCode });
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    const roomCreationTime = new Date(room.createdAt).getTime();
+    const ttl = 4 * 24 * 60 * 60 * 1000; 
+    const expirationTime = roomCreationTime + ttl;
+    const currentTime = new Date().getTime();
+
+    const remainingTime = expirationTime - currentTime;
+
+    if (remainingTime <= 0) {
+      return res.status(200).json({ message: "Room has expired" });
+    }
+
+    const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+    const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+    const timeLeft = `${hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+    res.status(200).json({ message: "Time left until expiration", timeLeft });
+  } catch (error) {
+    console.error("Error calculating expiration time:", error);
+    res.status(500).json({ message: "Unable to calculate expiration time" });
+  }
+};

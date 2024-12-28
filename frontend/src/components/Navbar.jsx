@@ -6,7 +6,7 @@ const Navbar = () => {
   const { logout, authUser } = useAuthStore();
 
   return (
-    <header className="navbar-no-daisy bg-base-100 font-custom text-white border rounded-2xl border-[#B3B2AD] fixed w-[calc(100%-1rem)] top-2 z-40 backdrop-blur-lg bg-base-100/80 mx-2">
+    <header className="font-custom text-white border rounded-2xl border-[#B3B2AD] fixed w-[calc(100%-1rem)] top-2 z-40 backdrop-blur-lg bg-base-100/80 mx-2">
       <div className="container mx-auto px-2 h-14">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-8">
@@ -23,17 +23,28 @@ const Navbar = () => {
               <Settings className="w-4 h-4 mr-2" />
             </Link>
 
-            {authUser && (
+            {authUser ? (
               <>
                 <Link to="/profile" className="btn btn-sm flex items-center">
                   <User className="size-5 mr-2" />
                 </Link>
 
-                <button className="flex items-center p-1.5 border-white rounded-lg bg-[#65f157] text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white" onClick={logout}>
+                <button
+                  className="flex items-center p-1.5 border-white rounded-lg bg-[#65f157] text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
+                  onClick={logout}
+                >
                   <span>Logout</span>
                   <ArrowRight className="size-5 -rotate-45" />
                 </button>
               </>
+            ) : (
+              <Link
+                to="/login"
+                className="flex items-center p-1.5 border-white rounded-lg bg-[#65f157] text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
+              >
+                <span>Login</span>
+                <ArrowRight className="size-5" />
+              </Link>
             )}
           </div>
         </div>

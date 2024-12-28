@@ -20,8 +20,8 @@ const App = () => {
     checkAuth();
   }, [checkAuth]);
 
-  console.log({authUser});
-  console.log({onlineUsers});
+  // console.log({authUser});
+  // console.log({onlineUsers});
 
   if(isCheckingAuth && !authUser) 
     return (
@@ -35,10 +35,10 @@ const App = () => {
       <Navbar/>
 
       <Routes>
-        <Route path='/' element={authUser ? <HomePage/> : <Navigate to= "/login"/>} />
+        <Route path='/' element={<HomePage/>} />
         <Route path='/signup' element={!authUser ? <SignUpPage/> : <Navigate to= "/"/>}/>
         <Route path='/login' element={!authUser ? <LoginPage/> : <Navigate to= "/"/>}/>
-        <Route path='/setings' element={<SettingsPage/>}/>
+        <Route path='/settings' element={<SettingsPage/>}/>
         <Route path='/profile' element={authUser ? <ProfilePage/>: <Navigate to= "/login"/>}/>
         <Route path='/chatroom' element={authUser ? <ChatRoomPage/>: <Navigate to= "/login"/>}/>
         <Route path='/chatbox' element={authUser ? <ChatBoxPage/>: <Navigate to= "/login"/>}/>

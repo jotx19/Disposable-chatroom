@@ -16,10 +16,12 @@ const roomSchema = new mongoose.Schema(
     ],
     roomCode: { type: String, unique: true, required: true },
   },
-  { timestamps: true }
+  { 
+    timestamps: true 
+  }
 );
 
-roomSchema.index({ roomCode: 1 }, { unique: true }); // Make sure this index is enforced
+roomSchema.index({ createdAt: 1 }, { expireAfterSeconds: 4 * 24 * 60 * 60 });
 
 const Room = mongoose.model("Room", roomSchema);
 export default Room;

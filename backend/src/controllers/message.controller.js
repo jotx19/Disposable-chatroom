@@ -32,8 +32,6 @@ export const sendMessage = async (req, res) => {
     });
 
     await message.save();
-
-    // Broadcast to all room participants
     io.to(roomId).emit('message', message);
 
     res.status(201).json(message);

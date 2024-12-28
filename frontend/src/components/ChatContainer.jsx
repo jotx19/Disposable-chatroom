@@ -27,7 +27,6 @@ const ChatContainer = () => {
       sender: authUser,
       roomId: selectedRoom._id,
     };
-
     sendMessage(messageData);
 
     setNewMessage("");
