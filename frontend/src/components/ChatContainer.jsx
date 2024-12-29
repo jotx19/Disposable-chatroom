@@ -65,7 +65,7 @@ const ChatContainer = () => {
               )}
               <div className="flex flex-col space-y-2">
                 <div
-                  className={`px-4 py-2 rounded-lg ${
+                  className={`px-4 py-2 rounded-xl ${
                     message.sender._id === authUser._id
                       ? "bg-blue-500 text-white"
                       : "bg-gray-200 text-black"

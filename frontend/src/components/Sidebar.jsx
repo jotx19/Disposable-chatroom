@@ -13,7 +13,7 @@ const Sidebar = () => {
   }, [getRooms]);
 
   return (
-    <aside className="h-full w-20 bg-[#171717] lg:w-52 rounded-l-3xl border-base-300 flex flex-col transition-all duration-200">
+    <aside className="h-full w-16 bg-[#171717] lg:w-52 rounded-l-3xl border-base-300 flex flex-col transition-all duration-200">
       {/* <div className='border-base-300 flex justify-center gap-4 w-full p-2.5'>
         <Layers className="size-6" />
         <span className="font-medium hidden lg:block">Rooms</span>
@@ -22,7 +22,6 @@ const Sidebar = () => {
       <div className="overflow-y-auto w-full py-3">
         {Array.isArray(rooms) && rooms.length > 0 ? (
           rooms.map((room) => {
-            // Count online members for each room
             const onlineCount = room.members.filter(member => onlineUsers.includes(member._id)).length;
 
             return (
@@ -36,7 +35,7 @@ const Sidebar = () => {
                 `}
               >
                 <div className="relative mx-auto lg:mx-0">
-                  <div className="size-12 uppercase bg-[#DBF507] text-black rounded-full flex justify-center items-center">
+                  <div className="size-12 uppercase bg-[#FFBDF7] text-black rounded-full flex justify-center items-center">
                     {room.name[0]} 
                   </div>
                 </div>

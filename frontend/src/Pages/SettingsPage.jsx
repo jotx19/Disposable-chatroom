@@ -111,8 +111,8 @@ const SettingsPage = () => {
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-3xl w-[40vw] h-[50vh] flex flex-col items-center">
+        <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-3xl w-[90vw] sm:w-[75vw] md:w-[60vw] lg:w-[50vw] xl:w-[40vw] md:h-[55vh] h-[50vh] flex flex-col items-center">
             <div className="flex w-full justify-between mb-4">
               <h2 className="text-4xl tracking-tighter font-custom font-bold text-center text-black w-full">
                 Lifespan of Room
@@ -124,7 +124,7 @@ const SettingsPage = () => {
                 <X size={24} />
               </button>
             </div>
-            <div className="text-3xl mt-11 border bg-[#FFBDF7] rounded-xl p-2 text-[#FF4104] font-futuras uppercase">
+            <div className="text-3xl m-11 border bg-[#FFBDF7] rounded-xl p-2 text-[#FF4104] font-futuras uppercase">
               Time Left
             </div>
             <div className="flex mt-2 space-x-2">
@@ -137,13 +137,13 @@ const SettingsPage = () => {
                 </div>
               ))}
             </div>
-            <div className="flex mt-2 space-x-2 text-xl font-custom text-black">
+            <div className="flex m-2 space-x-2 text-xl font-custom text-black">
               <div>Days: </div>
               <div>Hours: </div>
               <div>Minutes: </div>
               <div>Seconds</div>
             </div>
-            
+
             <div className="mt-4 flex space-x-4">
               <button
                 onClick={goToChatRoom}

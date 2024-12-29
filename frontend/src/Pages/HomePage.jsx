@@ -22,14 +22,14 @@ const HomePage = () => {
             to="/chatbox"
             className="w-40 h-12 flex justify-center items-center bg-white rounded-3xl text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white transition duration-200"
           >
-            <span className="text-lg font-bold">Explore</span>
+            <span className="text-lg">Explore</span>
             <ArrowRight className="w-5 h-5 ml-2 -rotate-45" />
           </Link>
           <Link
             to="/chatroom"
             className="w-40 h-12 flex justify-center items-center bg-white rounded-3xl text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white transition duration-200"
           >
-            <span className="text-lg font-bold">Room</span>
+            <span className="text-lg">Room</span>
             <ArrowRight className="w-5 h-5 ml-2 -rotate-45" />
           </Link>
         </div>

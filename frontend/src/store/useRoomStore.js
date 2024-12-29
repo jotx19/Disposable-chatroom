@@ -2,13 +2,13 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 
-export const useRoomStore = create((set) => ({
+export const useRoomStore = create((set, get) => ({
   rooms: [],
-  userRooms: [], 
+  userRooms: [],
   isCreatingRoom: false,
   isJoiningRoom: false,
-  createdRoomCode: "", 
-  roomExpirationTimes: {}, // New state to hold expiration times for rooms
+  createdRoomCode: "",
+  roomExpirationTimes: {}, 
 
   fetchRooms: async () => {
     try {
@@ -86,25 +86,59 @@ export const useRoomStore = create((set) => ({
     }
   },
 
-  getRoomExpirationTime: async (roomCode) => {  
+  // Get room expiration time with caching and rate limiting
+  getRoomExpirationTime: async (roomCodeOrId) => {
+    const currentTime = new Date().getTime();
+    const state = get();
+
+    const cachedExpiration = state.roomExpirationTimes[roomCodeOrId];
+    if (cachedExpiration && currentTime - cachedExpiration.timestamp < 10 * 60 * 1000) {
+      return cachedExpiration.timeLeft;
+    }
+
     try {
-      const res = await axiosInstance.get(`/room/${roomCode}/expiry`);
+      const url = `/room/${roomCodeOrId}/expiry`;
+      const res = await axiosInstance.get(url);
       const { timeLeft } = res.data;
-        
+
       set((state) => ({
         roomExpirationTimes: {
           ...state.roomExpirationTimes,
-          [roomCode]: timeLeft,
+          [roomCodeOrId]: {
+            timeLeft,
+            timestamp: currentTime,
+          },
         },
       }));
-  
-      console.log(`Expiration time for room ${roomCode}:`, timeLeft); // Log the expiration time
 
-      return timeLeft; 
+      setInterval(() => {
+        get().updateExpirationTime(roomCodeOrId);
+      }, 1000);
+
+      return timeLeft;
     } catch (error) {
-      console.error('Error fetching room expiration time:', error); // Log any errors
+      console.error('Error fetching room expiration time:', error);
       toast.error('Failed to fetch room expiration time');
     }
   },
-  
+
+  updateExpirationTime: (roomCodeOrId) => {
+    const state = get();
+    const cachedExpiration = state.roomExpirationTimes[roomCodeOrId];
+
+    if (cachedExpiration) {
+      const timeLeft = cachedExpiration.timeLeft - 1;
+      set((state) => ({
+        roomExpirationTimes: {
+          ...state.roomExpirationTimes,
+          [roomCodeOrId]: {
+            ...cachedExpiration,
+            timeLeft: timeLeft > 0 ? timeLeft : 0,
+          },
+        },
+      }));
+    }
+  },
+
 }));
+

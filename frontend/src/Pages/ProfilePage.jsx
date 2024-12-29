@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Camera, Mail, User } from "lucide-react";
+import { Camera, Mail } from "lucide-react";
 
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
@@ -15,9 +15,11 @@ const ProfilePage = () => {
     reader.readAsDataURL(file);
 
     reader.onload = async () => {
-      const base64Image = reader.result;
-      setSelectedImg(base64Image);
-      await updateProfile({ profilePic: base64Image });
+      const base64Image = reader.result.split(',')[1]; // Remove the "data:image/*;base64," part of the string
+      setSelectedImg(reader.result);  // Display the preview image
+
+      // Send the base64 image to the backend
+      await updateProfile({ profilepic: base64Image });
     };
   };
 
@@ -26,18 +28,17 @@ const ProfilePage = () => {
       <div className="max-w-2xl mx-auto p-4 py-8">
         <div className="bg-base-300 rounded-xl p-6 space-y-8">
           <div className="text-center">
-            <h1 className="text-2xl font-semibold ">Profile</h1>
+            <h1 className="text-2xl font-semibold">Profile</h1>
             <p className="mt-2">Your profile information</p>
           </div>
 
-          {/* avatar upload section */}
-
+          {/* Avatar upload section */}
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <img
-                src={selectedImg || authUser.profilePic || "/avatar.png"}
+                src={selectedImg || authUser.profilepic || "/avatar.png"}
                 alt="Profile"
-                className="size-32 rounded-full object-cover border-4 "
+                className="size-32 rounded-full object-cover border-4"
               />
               <label
                 htmlFor="avatar-upload"
@@ -76,7 +77,7 @@ const ProfilePage = () => {
           </div>
 
           <div className="mt-6 bg-base-300 rounded-xl p-6">
-            <h2 className="text-lg font-medium  mb-4">Account Information</h2>
+            <h2 className="text-lg font-medium mb-4">Account Information</h2>
             <div className="space-y-3 text-sm">
               <div className="flex items-center justify-between py-2 border-b border-zinc-700">
                 <span>Member Since</span>
