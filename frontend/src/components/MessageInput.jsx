@@ -60,7 +60,7 @@ const MessageInput = () => {
 
   return (
     <div className="p-4 w-full">
-      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#f8f8f8] rounded-xl shadow-xl gap-2">
+      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#1c1c1c] text-white rounded-xl shadow-xl gap-2">
         {imagePreview && (
           <div className="relative w-20 h-20 mr-2">
             <img
@@ -80,7 +80,7 @@ const MessageInput = () => {
 
         <input
           type="text"
-          className="w-full p-2 bg-transparent border border-base-300 input border-black input-bordered rounded-3xl text-black focus:outline-none font-custom input-sm sm:input-md"
+          className="w-full p-3 bg-transparent border border-base-300 input border-black input-bordered rounded-3xl text-white focus:outline-none font-custom input-sm sm:input-md"
           placeholder="Type a message..."
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -113,7 +113,7 @@ const MessageInput = () => {
         >
           <Send
             size={22}
-            className="border border-base-300 rounded-full h-10 w-10 p-2 text-black bg-[#dbf507] hover:scale-105"
+            className="border border-base-300 rounded-full h-12 w-12 p-2 text-black bg-[#dbf507] hover:scale-105"
           />
         </button>
       </form>
