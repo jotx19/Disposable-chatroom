@@ -128,8 +128,6 @@ export const removeUser = async (req, res) => {
 export const getRoomExpirationTime = async (req, res) => {
   try {
     const { roomIdentifier } = req.params;
-
-    // Check if roomIdentifier is a roomCode or roomId
     const isRoomCode = typeof roomIdentifier === 'string' && roomIdentifier.length < 24; // Room code is typically shorter than 24 characters
     const query = isRoomCode ? { roomCode: roomIdentifier } : { _id: roomIdentifier }; // Query by roomCode or roomId
 
@@ -140,7 +138,7 @@ export const getRoomExpirationTime = async (req, res) => {
     }
 
     const roomCreationTime = new Date(room.createdAt).getTime();
-    const ttl = 4 * 24 * 60 * 60 * 1000;  // Example TTL of 4 days
+    const ttl = 6 * 24 * 60 * 60 * 1000;  // Example TTL of 4 days
     const expirationTime = roomCreationTime + ttl;
     const currentTime = new Date().getTime();
 

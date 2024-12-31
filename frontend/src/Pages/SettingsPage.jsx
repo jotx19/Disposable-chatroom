@@ -81,14 +81,14 @@ const SettingsPage = () => {
       </div>
 
       <div className="w-full gap-5 md:w-1/2 flex flex-col items-center justify-center md:justify-center bg-[#171717] p-6 rounded-xl mt-6">
-        <div className="flex w-full max-w-sm bg-[#245767] rounded-xl p-2 items-center">
-          <img
+      <div className="flex w-full max-w-sm bg-[#245767] rounded-xl p-2 items-center h-32 md:h-44">
+      <img
             src="/roomies.gif"
             alt="Join Room"
-            className="w-32 h-32 rounded-md"
+            className="w-24 h-24 md:w-32 md:h-32 rounded-md"
           />
           <div className="flex-1 flex-col p-4 justify-between">
-            <div className="text-2xl font-bold uppercase flex font-futuras text-white">
+            <div className="text-xl font-bold uppercase flex font-futuras text-white md:text-2xl">
               Enter the room code
             </div>
             <div className="flex items-center w-full mt-4">
@@ -103,7 +103,7 @@ const SettingsPage = () => {
                 onClick={handleCheckExpirationTime}
                 className="bg-[#BFDD2E] text-white p-3 rounded-full ml-2 transition-all duration-300 ease-in-out transform hover:scale-105"
               >
-                <ArrowRight className="text-black font-bold" size={24} />
+                <ArrowRight className="text-black font-bold" size={20} />
               </button>
             </div>
           </div>

@@ -60,35 +60,35 @@ const ChatRoomPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-8 md:px-12">
-      <h1 className="text-6xl font-bold font-futuras text-center text-[#B3B2AD]">
+      <h1 className="text-5xl mt-3 sm:text-5xl md:text-6xl font-bold font-futuras text-center text-[#B3B2AD]">
         SETUP YOUR ROOM
       </h1>
-      <div className="flex bg-[#171717] rounded-2xl p-10 md:p-12">
-        <div className="flex gap-16 flex-col md:flex-row w-full max-w-5xl items-stretch">
+      <div className="flex bg-[#171717] rounded-2xl p-6 md:p-10 lg:p-12">
+        <div className="flex gap-8 flex-col md:flex-row w-full max-w-5xl items-stretch">
           {/* Join Room Section */}
           <div className="w-full gap-5 md:w-1/2 flex flex-col items-center justify-center md:justify-center">
-            <div className="flex w-full max-w-sm bg-[#FFBDF7] rounded-xl p-2 items-center">
+            <div className="flex w-full max-w-sm bg-[#FFBDF7] rounded-xl p-4 items-center">
               <img
                 src="/joins.gif"
                 alt="Join Room"
-                className="w-32 h-32 rounded-md"
+                className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-md"
               />
               <div className="flex-1 flex-col p-4 justify-between">
-                <div className="text-2xl font-bold uppercase flex font-futuras text-white">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
                   Join Room
                 </div>
-                <div className="text-2xl font-bold uppercase flex font-futuras text-[#FF4104]">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FF4104]">
                   Enter the code
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-full">
+            <div className="flex items-center w-full mt-4">
               <input
                 type="text"
                 placeholder="Enter Room Code"
                 value={joinCode}
                 onChange={(e) => setJoinCode(e.target.value)}
-                className="w-full bg-transparent text-white border p-2 rounded-lg"
+                className="w-full bg-transparent text-white border p-3 sm:p-4 rounded-lg"
               />
               <button
                 onClick={handleJoinRoom}
@@ -97,11 +97,12 @@ const ChatRoomPage = () => {
               >
                 {isJoiningRoom ? (
                   <div className="flex items-center justify-center gap-2">
-                  <ArrowRight
-                    size={20}
-                    className="hover:-rotate-45 transition-all duration-300 ease-in-out transform hover:scale-105"
-                  />
-                </div>                ) : (
+                    <ArrowRight
+                      size={20}
+                      className="hover:-rotate-45 transition-all duration-300 ease-in-out transform hover:scale-105"
+                    />
+                  </div>
+                ) : (
                   <div className="flex items-center justify-center gap-2">
                     <ArrowRight
                       size={20}
@@ -118,28 +119,28 @@ const ChatRoomPage = () => {
 
           {/* Create Room Section */}
           <div className="w-full gap-6 md:w-1/2 flex flex-col items-center md:justify-center">
-            <div className="flex w-full max-w-sm bg-[#EF5626] rounded-xl p-2 items-center">
+            <div className="flex w-full max-w-sm bg-[#EF5626] rounded-xl p-4 items-center">
               <img
                 src="/joins.gif"
                 alt="Join Room"
-                className="w-32 h-32 rounded-md"
+                className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-md"
               />
               <div className="flex-1 flex-col p-4 justify-between">
-                <div className="text-2xl font-bold uppercase flex font-futuras text-white">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
                   Create Room
                 </div>
-                <div className="text-2xl font-bold uppercase flex font-futuras text-[#FFBDF7]">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FFBDF7]">
                   Enter the code
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-full">
+            <div className="flex items-center w-full mt-4">
               <input
                 type="text"
                 placeholder="Enter Room Name"
                 value={roomName}
                 onChange={(e) => setRoomName(e.target.value)}
-                className="w-full text-white bg-transparent border p-2 rounded-lg"
+                className="w-full text-white bg-transparent border p-3 sm:p-4 rounded-lg"
               />
               <button
                 onClick={handleCreateRoom}
@@ -148,11 +149,12 @@ const ChatRoomPage = () => {
               >
                 {isCreatingRoom ? (
                   <div className="flex items-center justify-center gap-2">
-                  <ArrowRight
-                    size={20}
-                    className="hover:-rotate-45 transition-all duration-300 ease-in-out transform hover:scale-105"
-                  />
-                </div>                ) : (
+                    <ArrowRight
+                      size={20}
+                      className="hover:-rotate-45 transition-all duration-300 ease-in-out transform hover:scale-105"
+                    />
+                  </div>
+                ) : (
                   <div className="flex items-center justify-center gap-2">
                     <ArrowRight
                       size={20}

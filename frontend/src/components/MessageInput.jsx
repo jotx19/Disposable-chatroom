@@ -1,13 +1,15 @@
 import { useRef, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { Image, Send, X } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
 import toast from "react-hot-toast";
 
 const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage, selectedRoom } = useChatStore(); // Get selectedRoom from the store
+  const { sendMessage, selectedRoom } = useChatStore();
+  const { authUser } = useAuthStore();
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -34,7 +36,6 @@ const MessageInput = () => {
     e.preventDefault();
     if (!text.trim() && !imagePreview) return;
 
-    // Ensure selectedRoom is set before sending the message
     if (!selectedRoom) {
       toast.error("Please select a room first.");
       return;
@@ -42,13 +43,12 @@ const MessageInput = () => {
 
     try {
       await sendMessage({
-        text: text.trim() || null, // Set text to null if empty
-        image: imagePreview || null, // Ensure image is null if not selected
-        roomId: selectedRoom._id, // Pass roomId from selectedRoom
-        senderId: "loggedInUserId", // Replace with the actual user's ID
+        text: text.trim() || null,
+        image: imagePreview || null,
+        roomId: selectedRoom._id,
+        senderId: authUser._id,
       });
 
-      // Clear form after sending the message
       setText("");
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
@@ -60,7 +60,7 @@ const MessageInput = () => {
 
   return (
     <div className="p-4 w-full">
-      <form onSubmit={handleSendMessage} className="flex items-center gap-2">
+      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#f8f8f8] rounded-xl shadow-xl gap-2">
         {imagePreview && (
           <div className="relative w-20 h-20 mr-2">
             <img
@@ -73,14 +73,14 @@ const MessageInput = () => {
               className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300 flex items-center justify-center"
               type="button"
             >
-              <X className="size-3" />
+              <X className="size-3 text-black border border-black hover:scale-100 bg-white rounded-full" />
             </button>
           </div>
         )}
 
         <input
           type="text"
-          className="w-full p-2 bg-transparent border border-base-300 input input-bordered rounded-lg input-sm sm:input-md"
+          className="w-full p-2 bg-transparent border border-base-300 input border-black input-bordered rounded-3xl text-black focus:outline-none font-custom input-sm sm:input-md"
           placeholder="Type a message..."
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -96,13 +96,13 @@ const MessageInput = () => {
 
         <button
           type="button"
-          className={`sm:flex btn btn-circle ${
+          className={`sm:flex btn btn-circle rounded-full h-10 w-10 p-2 bg-[#dbf507] ${
             imagePreview ? "text-emerald-500" : "text-zinc-400"
           }`}
           onClick={() => fileInputRef.current?.click()}
           aria-label="Upload an image"
         >
-          <Image size={22} />
+          <Image className="text-black" size={22} />
         </button>
 
         <button
@@ -113,7 +113,7 @@ const MessageInput = () => {
         >
           <Send
             size={22}
-            className="border border-base-300 rounded-md h-9 w-9 p-2 text-black bg-[#ff91e7] hover:scale-105"
+            className="border border-base-300 rounded-full h-10 w-10 p-2 text-black bg-[#dbf507] hover:scale-105"
           />
         </button>
       </form>
