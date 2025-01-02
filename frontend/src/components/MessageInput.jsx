@@ -1,22 +1,18 @@
 import { useRef, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { Image, Send, X } from "lucide-react";
-import { useAuthStore } from "../store/useAuthStore";
 import toast from "react-hot-toast";
 
 const MessageInput = () => {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const { sendMessage, selectedRoom } = useChatStore();
-  const { authUser } = useAuthStore();
+  const { sendMessage, selectedRoom } = useChatStore((state) => state); // Get selectedRoom from store
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (!file) return;
-
     if (!file.type.startsWith("image/")) {
-      toast.error("Please select a valid image file");
+      toast.error("Please select an image file");
       return;
     }
 
@@ -36,33 +32,35 @@ const MessageInput = () => {
     e.preventDefault();
     if (!text.trim() && !imagePreview) return;
 
-    if (!selectedRoom) {
-      toast.error("Please select a room first.");
+    if (!selectedRoom?._id) {
+      toast.error("Please select a room first");
       return;
     }
 
     try {
       await sendMessage({
-        text: text.trim() || null,
-        image: imagePreview || null,
+        text: text.trim(),
+        image: imagePreview,
         roomId: selectedRoom._id,
-        senderId: authUser._id,
       });
 
+      // Clear form
       setText("");
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
       console.error("Failed to send message:", error);
-      toast.error("Failed to send message. Please try again.");
     }
   };
 
+  if (!selectedRoom) {
+    return <div>Please select a room to send a message</div>;
+  }
+
   return (
     <div className="p-4 w-full">
-      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#1c1c1c] text-white rounded-xl shadow-xl gap-2">
-        {imagePreview && (
-          <div className="relative w-20 h-20 mr-2">
+      {imagePreview && (
+          <div className="relative w-20 h-20 mb-3">
             <img
               src={imagePreview}
               alt="Preview"
@@ -78,6 +76,7 @@ const MessageInput = () => {
           </div>
         )}
 
+      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#1c1c1c] text-white rounded-xl shadow-xl gap-2">
         <input
           type="text"
           className="w-full p-3 bg-transparent border border-base-300 input border-black input-bordered rounded-3xl text-white focus:outline-none font-custom input-sm sm:input-md"
@@ -96,9 +95,7 @@ const MessageInput = () => {
 
         <button
           type="button"
-          className={`sm:flex btn btn-circle rounded-full h-10 w-10 p-2 bg-[#dbf507] ${
-            imagePreview ? "text-emerald-500" : "text-zinc-400"
-          }`}
+          className={`sm:flex btn btn-circle rounded-full h-10 w-10 p-2 bg-[#dbf507] ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
           onClick={() => fileInputRef.current?.click()}
           aria-label="Upload an image"
         >

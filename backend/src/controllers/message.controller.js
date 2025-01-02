@@ -56,20 +56,32 @@ export const getRoomMessages = async (req, res) => {
 
 export const deleteUserMessages = async (req, res) => {
   try {
-    const user = req.user; 
+    const user = req.user;
 
     if (!user) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    const result = await Message.deleteMany({ sender: user._id });
+    const { messageIds } = req.body;
 
-    res.status(200).json({ 
-      message: 'All messages from the user have been deleted', 
-      deletedCount: result.deletedCount 
+    if (!messageIds || !Array.isArray(messageIds) || messageIds.length === 0) {
+      return res.status(400).json({ error: 'No messages specified for deletion' });
+    }
+
+    const result = await Message.deleteMany({
+      _id: { $in: messageIds }, 
+      sender: user._id,       
+    });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: 'No messages found to delete' });
+    }
+
+    res.status(200).json({
+      message: 'Selected messages have been deleted',
+      deletedCount: result.deletedCount,
     });
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete messages' });
   }
 };
-
