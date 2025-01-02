@@ -8,6 +8,7 @@ import {
   Send,
   Image,
 } from "lucide-react";
+import Footer from "../components/Footer";
 
 const HomePage = () => {
   const [message, setMessage] = useState("");
@@ -151,6 +152,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
