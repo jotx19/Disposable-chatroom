@@ -91,7 +91,7 @@ const ChatHeader = () => {
       </div>
     </div>
 
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-6">
       <Settings2Icon
         size={22}
         className="text-white cursor-pointer"
