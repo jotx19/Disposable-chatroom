@@ -40,12 +40,11 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-
 export const getRoomMessages = async (req, res) => {
   try {
     const { roomId } = req.params;
     const messages = await Message.find({ room: roomId })
-      .populate('sender', 'name email')
+      .populate('sender', 'name email profilepic')
       .sort({ createdAt: 1 });
 
     res.status(200).json(messages);
