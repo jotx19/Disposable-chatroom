@@ -78,7 +78,7 @@ const ChatContainer = () => {
               {!isAuthUser && (
                 <div className="w-10 h-10 rounded-full border mr-2">
                   <img
-                    src={message.sender?.profilepic || "/avatar.png"}
+                    src={message.sender?.profilePic || "/avatar.png"}
                     alt="profile pic"
                     className="w-full h-full object-cover rounded-full"
                   />
