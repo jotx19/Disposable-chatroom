@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import ChatHeader from "./ChatHeader";
 import MessageInput from "./MessageInput";
-import MessageSkeleton from "./MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
 import { Trash2 } from "lucide-react";
@@ -76,16 +75,20 @@ const ChatContainer = () => {
               onClick={() => toggleSelectedMessage(message._id)}
             >
               {!isAuthUser && (
-                <div className="w-10 h-10 rounded-full border mr-2">
-                  <img
-                    src={
-                      message.sender?.profilepic
-                        ? message.sender.profilepic
-                        : "/avatar.png"
-                    }
-                    alt="profile pic"
-                    className="w-full h-full object-cover rounded-full"
-                  />
+                <div className="flex flex-col items-center w-10 mr-2">
+                  <div className="w-10 h-10 rounded-full border">
+                    <img
+                      src={
+                        message.sender?.profilepic
+                          ? message.sender.profilepic
+                          : "/avatar.png"
+                      }
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                  <span className="text-xs text-gray-500 mt-1 text-center truncate w-10">
+                    {message.sender?.name || "Unknown"}
+                  </span>
                 </div>
               )}
 
