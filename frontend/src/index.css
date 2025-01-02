@@ -3,14 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'custom';
-    src: url('type4.woff2');
-  }
+  font-family: 'custom';
+  src: url('/type4.woff2') format('woff2');
+}
 
 @font-face {
-    font-family: 'futuras';
-    src: url('futuras.woff2');
-  }
+  font-family: 'futuras';
+  src: url('/futuras.woff2') format('woff2');
+}
+
 * {
     margin: 0;
     padding: 0;
