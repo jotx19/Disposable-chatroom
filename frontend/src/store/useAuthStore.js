@@ -59,7 +59,7 @@ export const useAuthStore = create((set, get) => ({
     set({ isLoggingInWithGoogle: true });
     try {
       const googleAuthWindow = window.open(
-        "http://localhost:5001/api/auth/google", 
+        "https://disposable-chatroom.onrender.com/api/auth/google", 
         "Google Login",
       );
 

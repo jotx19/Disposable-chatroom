@@ -69,7 +69,7 @@ const LoginPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center hover:bg-blue-600 transition text-sm md:text-base mb-4"
+            className="bg-blue-500 mt-6 text-white py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center hover:bg-blue-600 transition text-sm md:text-base mb-4"
             disabled={isLoggingIn}
           >
             {isLoggingIn ? (
@@ -82,13 +82,13 @@ const LoginPage = () => {
             )}
           </button>
 
-          <div className="flex items-center w-full my-4">
+          {/* <div className="flex items-center w-full my-4">
             <hr className="flex-grow border-gray-300" />
             <span className="mx-2 text-gray-500 text-sm">OR</span>
             <hr className="flex-grow border-gray-300" />
-          </div>
+          </div> */}
 
-          <button
+          {/* <button
             className="bg-gray-200 text-black py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center gap-2 hover:bg-gray-300 transition text-sm md:text-base"
             onClick={(e) => {
               e.preventDefault();
@@ -103,11 +103,11 @@ const LoginPage = () => {
               </>
             ) : (
               <>
-                <User className="h-5 w-5 text-black" /> {/* Circle user icon */}
+                <User className="h-5 w-5 text-black" />
                 <span>Sign in with Google</span>
               </>
             )}
-          </button>
+          </button> */}
         </form>
 
         {/* Sign up link */}

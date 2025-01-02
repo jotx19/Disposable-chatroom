@@ -5,6 +5,7 @@ import authRoute from "./routes/auth.route.js"
 import roomRoute from "./routes/room.route.js"
 import messageRoute from "./routes/message.route.js"
 import cors from "cors"
+import path from "path"
 
 import { app, server } from "./lib/socket.js";
 import { configurePassport, passport } from "./lib/passport.js";
@@ -14,13 +15,14 @@ import { googleAuth } from "./controllers/auth.controller.js";
 dotenv.config()
 configurePassport();
 const PORT = process.env.PORT
+const __dirname = path.resolve();
 
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "https://disposable-chatroom.onrender.com", 
     credentials: true, 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Request-With'], 
@@ -30,6 +32,16 @@ app.use(cors({
 app.use("/api/auth", authRoute);
 app.use("/api/room", roomRoute);
 app.use("/api/message", messageRoute);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../frontend/public")));
+    
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    });
+  }
+  
 
 //Testing
 // app.get("/", (req, res) => {
