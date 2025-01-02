@@ -34,7 +34,7 @@ app.use("/api/room", roomRoute);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.use(express.static(path.join(__dirname, "../frontend/dist/assets")));
     app.use(express.static(path.join(__dirname, "../frontend/public")));
     
     app.get("*", (req, res) => {
