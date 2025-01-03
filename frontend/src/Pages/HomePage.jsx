@@ -8,7 +8,7 @@ import {
   Send,
   Image,
 } from "lucide-react";
-import Footer from "../components/Footer";
+import Marquee from "../components/Marquee";
 
 const HomePage = () => {
   const [message, setMessage] = useState("");
@@ -55,38 +55,40 @@ const HomePage = () => {
   return (
     <>
       <div className="min-h-screen gap-10 flex flex-col justify-start items-center px-4 lg:px-8">
-        <div className="text-center mt-20">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#B3B2AD] font-futuras uppercase font-bold tracking-tight m-0">
-            Where Chats Live Then <u>Fade</u> Away.
-          </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-xl  text-[#B3B2AD] font-custom tracking-tighter mt-4">"Chatting today is more than just exchanging words <br />it's about connecting with others in dynamic, real-time conversations."</p>
+        <div className="text-center mt-28">
+          {/* <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#B3B2AD] font-futuras uppercase font-bold tracking-tight m-0">
+            Disposable chatrooms
+          </h1> */}
+          {/* <p className="text-lg sm:text-xl md:text-2xl lg:text-xl  text-[#B3B2AD] font-custom tracking-tighter mt-4">"Chatting today is more than just exchanging words <br />it's about connecting with others in dynamic, real-time conversations."</p> */}
         </div>
 
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-full">
           <img
             src="/hero.png"
             alt="Post"
-            className="object-cover w-full max-h-[40vh] sm:max-h-[50vh] rounded-2xl shadow-lg"
+            className="object-cover h-auto max-w-full md:h-[60vh] lg:h-[68vh]"
           />
         </div>
 
-        <div className="flex flex-row justify-center gap-12 ">
+        <div className="flex flex-row justify-center gap-1 ">
           <Link
             to="/chatbox"
-            className="w-36 sm:w-40 h-10 sm:h-12 flex justify-center items-center bg-white rounded-xl text-black hover:scale-105 border-transparent transition duration-200"
+            className="w-28 sm:w-40 h-10 sm:h-12 flex justify-center items-center bg-white rounded-lg text-black hover:scale-105 border-transparent transition duration-200"
           >
             <span className="text-base sm:text-lg">Explore</span>
             <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2 -rotate-45" />
           </Link>
           <Link
             to="/chatroom"
-            className="w-36 sm:w-40 h-10 sm:h-12 flex justify-center items-center bg-white rounded-xl text-black hover:scale-105 border-transparent hover:border-white transition duration-200"
+            className="w-28 sm:w-40 h-10 sm:h-12 flex justify-center items-center bg-white rounded-lg text-black hover:scale-105 border-transparent hover:border-white transition duration-200"
           >
             <span className="text-base sm:text-lg">Room</span>
             <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2 -rotate-45" />
           </Link>
           
         </div>
+
+        <Marquee />
 
         <div className="w-full mt-6 p-10 flex flex-col items-center space-y-6">
           <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -152,7 +154,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
