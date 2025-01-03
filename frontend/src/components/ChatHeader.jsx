@@ -108,7 +108,7 @@ const ChatHeader = () => {
     <div className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-3xl w-full max-w-lg flex flex-col items-center">
         <div className="flex w-full justify-between mb-4">
-          <h2 className="text-3xl font-bold text-black font-custom tracking-tighter text-center w-full">
+          <h2 className="text-3xl text-black font-custom tracking-tighter text-center w-full">
             Room Members
           </h2>
           <button

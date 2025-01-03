@@ -60,7 +60,7 @@ const ChatRoomPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen space-y-6 px-8 md:px-12">
-      <h1 className="text-5xl mt-3 sm:text-5xl md:text-6xl font-bold font-futuras text-center text-[#B3B2AD]">
+      <h1 className="text-5xl mt-24 sm:text-5xl md:text-6xl font-bold font-futuras text-center text-[#B3B2AD]">
         SETUP YOUR ROOM
       </h1>
       <div className="flex bg-[#171717] rounded-2xl p-6 md:p-10 lg:p-12">
@@ -127,7 +127,7 @@ const ChatRoomPage = () => {
               />
               <div className="flex-1 flex-col p-4 justify-between">
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
-                  Create Room
+                  Create
                 </div>
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FFBDF7]">
                   Enter the code
