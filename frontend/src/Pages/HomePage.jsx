@@ -92,10 +92,10 @@ const HomePage = () => {
 
         <div className="w-full p-4 flex flex-col items-center space-y-6">
           <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-[#245767] rounded-3xl shadow-xl p-10 space-y-8 hover:scale-105 hover:rotate-2 transition-all duration-300 ease-in-out">
+            <div className="bg-[#1c1c1c] rounded-3xl shadow-xl p-10 space-y-8 hover:scale-105 hover:rotate-2 transition-all duration-300 ease-in-out">
               <div className="flex items-center gap-4">
-                <MessageCircle className="text-[#DBF507] w-10 h-10" />
-                <h1 className="font-futuras uppercase text-[#DBF507] text-2xl sm:text-3xl font-bold">
+                <MessageCircle className="text-[#EF5626] w-10 h-10" />
+                <h1 className="font-futuras uppercase text-[#EF5626] text-2xl sm:text-3xl font-bold">
                   Live Chat
                 </h1>
               </div>
@@ -106,10 +106,10 @@ const HomePage = () => {
               </ul>
             </div>
 
-            <div className="bg-[#EF5626] rounded-3xl shadow-xl p-10 space-y-8 hover:scale-105 hover:-rotate-2 transition-all duration-300 ease-in-out">
+            <div className="bg-[#1c1c1c] rounded-3xl shadow-xl p-10 space-y-8 hover:scale-105 hover:-rotate-2 transition-all duration-300 ease-in-out">
               <div className="flex items-center gap-4">
-                <Clock className="text-[#FFBDF7] w-10 h-10" />
-                <h1 className="font-futuras uppercase text-[#FFBDF7] text-2xl sm:text-3xl font-bold">
+                <Clock className="text-[#DBF507] w-10 h-10" />
+                <h1 className="font-futuras uppercase text-[#DBF507] text-2xl sm:text-3xl font-bold">
                   Ephemeral
                 </h1>
               </div>
