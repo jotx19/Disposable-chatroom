@@ -56,10 +56,10 @@ const HomePage = () => {
     <>
       <div className="min-h-screen gap-10 flex flex-col justify-start items-center px-4 lg:px-8">
         <div className="text-center mt-28">
-          {/* <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#B3B2AD] font-futuras uppercase font-bold tracking-tight m-0">
-            Disposable chatrooms
-          </h1> */}
-          {/* <p className="text-lg sm:text-xl md:text-2xl lg:text-xl  text-[#B3B2AD] font-custom tracking-tighter mt-4">"Chatting today is more than just exchanging words <br />it's about connecting with others in dynamic, real-time conversations."</p> */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#B3B2AD] font-futuras uppercase font-bold tracking-tight m-0">
+            Welcome to FlikChat
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-xl  text-[#B3B2AD] font-custom tracking-tighter mt-4">"Chatting today is more than just exchanging words"</p>
         </div>
 
         <div className="flex justify-center items-center w-full">
@@ -90,7 +90,7 @@ const HomePage = () => {
 
         <Marquee />
 
-        <div className="w-full mt-6 p-10 flex flex-col items-center space-y-6">
+        <div className="w-full p-4 flex flex-col items-center space-y-6">
           <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-[#245767] rounded-3xl shadow-xl p-10 space-y-8 hover:scale-105 hover:rotate-2 transition-all duration-300 ease-in-out">
               <div className="flex items-center gap-4">
