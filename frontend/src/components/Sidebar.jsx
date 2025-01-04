@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
-import { useChatStore } from '../store/useChatStore';
-import { Layers } from 'lucide-react';
-import { useAuthStore } from '../store/useAuthStore';
+import React, { useEffect } from "react";
+import { useChatStore } from "../store/useChatStore";
+import { useAuthStore } from "../store/useAuthStore";
+import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const { getRooms, rooms = [], selectedRoom, setSelectedRoom, isRoomLoading } = useChatStore();
+  const navigate = useNavigate(); // Correctly call the useNavigate hook
+
+  const {
+    getRooms,
+    rooms = [],
+    selectedRoom,
+    setSelectedRoom,
+    isRoomLoading,
+  } = useChatStore();
   const { onlineUsers } = useAuthStore();
 
   useEffect(() => {
-    getRooms(); 
+    getRooms();
   }, [getRooms]);
 
   return (
@@ -16,35 +25,57 @@ const Sidebar = () => {
       <div className="overflow-y-auto w-full py-3">
         {Array.isArray(rooms) && rooms.length > 0 ? (
           rooms.map((room) => {
-            const onlineCount = room.members.filter(member => onlineUsers.includes(member._id)).length;
+            const onlineCount = room.members.filter((member) =>
+              onlineUsers.includes(member._id)
+            ).length;
 
             return (
               <button
                 key={room._id}
-                onClick={() => setSelectedRoom(room)} 
+                onClick={() => setSelectedRoom(room)}
                 className={`
                   w-full p-3 flex items-center gap-3
                   hover:bg-base-300 transition-colors
-                  ${selectedRoom?._id === room._id ? "bg-[#] border rounded-l-3xl ring-[0.3px] ring-white" : ""}
+                  ${
+                    selectedRoom?._id === room._id
+                      ? "bg-[#] border rounded-l-3xl ring-[0.3px] ring-white"
+                      : ""
+                  }
                 `}
               >
                 <div className="relative mx-auto lg:mx-0">
                   <div className="size-12 uppercase bg-[#FFBDF7] text-black rounded-full flex justify-center items-center">
-                    {room.name[0]} 
+                    {room.name[0]}
                   </div>
                 </div>
 
                 <div className="hidden lg:block text-left min-w-0">
-                  <div className="font-bold text-white truncate">{room.name}</div>
+                  <div className="font-bold text-white truncate">
+                    {room.name}
+                  </div>
                   <div className="text-sm text-zinc-400">
-                    {onlineCount > 0 ? `${onlineCount} Online` : "No users online"}
+                    {onlineCount > 0
+                      ? `${onlineCount} Online`
+                      : "No users online"}
                   </div>
                 </div>
               </button>
             );
           })
         ) : (
-          <div className="text-center text-zinc-500 py-4">No rooms available</div>
+          <div className="flex justify-center items-center py-4">
+            <button
+              onClick={() => navigate("/chatroom")} // Use navigate function here
+              className="w-full p-3 flex items-center gap-3 bg-[#2d3c4f] hover:bg-[#3b4f67] text-white rounded-2xl transition-all duration-300 ease-in-out"
+            >
+              <div className="size-12 uppercase bg-[#FFBDF7] text-black rounded-full flex justify-center items-center">
+                <Plus size={24} />
+              </div>
+              <div className="text-left min-w-0">
+                <div className="font-bold text-white">Add Room</div>
+              </div>
+            </button>
+          </div>
         )}
       </div>
     </aside>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Link } from "react-router-dom";
-import { Eye, EyeOff, Layers, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react"; // Import Eye and EyeOff icons
+import { Link, useNavigate } from "react-router-dom"; // Added useNavigate for navigation
+import { Eye, EyeOff, Layers, Loader2, Lock, Mail } from "lucide-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,11 +10,19 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { login, isLoggingIn, loginWithGoogle, isLoggingInWithGoogle } = useAuthStore();
+  const { login, isLoggingIn, showToast } = useAuthStore(); // Added showToast for feedback
+  const navigate = useNavigate(); // Initialize navigation
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    const user = await login(formData);
+
+    if (user) {
+      showToast("Login successful!", "success"); // Show success toast
+      navigate("/chatbox"); // Redirect to /chatbox
+    } else {
+      showToast("Invalid login credentials", "error"); // Show error toast
+    }
   };
 
   return (
@@ -26,7 +34,6 @@ const LoginPage = () => {
               <Layers className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white">Welcome Back</h1>
-            <p className="text-white text-sm md:text-base"></p>
           </div>
         </div>
 
@@ -58,11 +65,7 @@ const LoginPage = () => {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none text-sm md:text-base"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? (
-                <EyeOff className="h-5 w-5 text-gray-400" /> // EyeOff icon when password is visible
-              ) : (
-                <Eye className="h-5 w-5 text-gray-400" /> // Eye icon when password is hidden
-              )}
+              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
             </button>
           </div>
 
@@ -81,33 +84,6 @@ const LoginPage = () => {
               "Sign in"
             )}
           </button>
-
-          {/* <div className="flex items-center w-full my-4">
-            <hr className="flex-grow border-gray-300" />
-            <span className="mx-2 text-gray-500 text-sm">OR</span>
-            <hr className="flex-grow border-gray-300" />
-          </div> */}
-
-          {/* <button
-            className="bg-gray-200 text-black py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center gap-2 hover:bg-gray-300 transition text-sm md:text-base"
-            onClick={(e) => {
-              e.preventDefault();
-              loginWithGoogle();
-            }}
-            disabled={isLoggingInWithGoogle}
-          >
-            {isLoggingInWithGoogle ? (
-              <>
-                <Loader2 className="animate-spin mr-2" />
-                Logging in with Google...
-              </>
-            ) : (
-              <>
-                <User className="h-5 w-5 text-black" />
-                <span>Sign in with Google</span>
-              </>
-            )}
-          </button> */}
         </form>
 
         {/* Sign up link */}

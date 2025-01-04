@@ -66,29 +66,30 @@ const ChatRoomPage = () => {
       <div className="flex bg-[#171717] rounded-2xl p-6 md:p-10 lg:p-12">
         <div className="flex gap-8 flex-col md:flex-row w-full max-w-5xl items-stretch">
           {/* Join Room Section */}
-          <div className="w-full gap-5 md:w-1/2 flex flex-col items-center justify-center md:justify-center">
+
+          <div className="w-full gap-4 md:w-1/2 flex flex-col items-center justify-center md:justify-center">
             <div className="flex w-full max-w-sm bg-[#FFBDF7] rounded-xl p-4 items-center">
-              <img
+              {/* <img
                 src="/joins.gif"
                 alt="Join Room"
                 className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-md"
-              />
+              /> */}
               <div className="flex-1 flex-col p-4 justify-between">
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
-                  Join Room
+                To  Join Room
                 </div>
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FF4104]">
                   Enter the code
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-full mt-4">
+            <div className="flex items-center w-full">
               <input
                 type="text"
                 placeholder="Enter Room Code"
                 value={joinCode}
                 onChange={(e) => setJoinCode(e.target.value)}
-                className="w-full bg-transparent text-white border p-3 sm:p-4 rounded-lg"
+                className="w-full bg-transparent text-white border p-2 sm:p-2 rounded-2xl"
               />
               <button
                 onClick={handleJoinRoom}
@@ -114,33 +115,34 @@ const ChatRoomPage = () => {
             </div>
           </div>
 
-          {/* Divider for larger screens */}
+
+          
+
           <div className="hidden md:block border-r border-gray-300 mx-4"></div>
 
-          {/* Create Room Section */}
-          <div className="w-full gap-6 md:w-1/2 flex flex-col items-center md:justify-center">
+          <div className="w-full gap-4 md:w-1/2 flex flex-col items-center md:justify-center">
             <div className="flex w-full max-w-sm bg-[#EF5626] rounded-xl p-4 items-center">
-              <img
+              {/* <img
                 src="/joins.gif"
                 alt="Join Room"
                 className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-md"
-              />
+              /> */}
               <div className="flex-1 flex-col p-4 justify-between">
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
-                  Create
+                  Create Room
                 </div>
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FFBDF7]">
-                  Enter the code
+                  Enter the Name
                 </div>
               </div>
             </div>
-            <div className="flex items-center w-full mt-4">
+            <div className="flex items-center w-full">
               <input
                 type="text"
                 placeholder="Enter Room Name"
                 value={roomName}
                 onChange={(e) => setRoomName(e.target.value)}
-                className="w-full text-white bg-transparent border p-3 sm:p-4 rounded-lg"
+                className="w-full text-white bg-transparent border p-2 sm:p-2 rounded-2xl"
               />
               <button
                 onClick={handleCreateRoom}

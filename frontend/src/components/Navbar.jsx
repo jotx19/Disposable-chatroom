@@ -10,7 +10,10 @@ const Navbar = () => {
       <div className="container mx-auto px-2 h-14">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 hover:opacity-80 transition-all"
+            >
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Layers className="w-5 h-5 text-primary" />
               </div>
@@ -19,9 +22,23 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <Link to="/settings" className="btn btn-sm flex items-center transition-colors">
-              <Settings className="w-4 h-4 mr-2" />
-            </Link>
+            {authUser ? (
+              <>
+                <Link
+                  to="/chatroom"
+                  className="btn btn-sm flex items-center transition-colors"
+                >
+                  <Settings className="w-4 h-4 mr-2" />
+                </Link>
+              </>
+            ) : (
+              <Link
+                to="/setting"
+                className="btn btn-sm flex items-center transition-colors"
+              >
+                <Settings className="w-4 h-4 mr-2" />
+              </Link>
+            )}
 
             {authUser ? (
               <>
@@ -30,7 +47,7 @@ const Navbar = () => {
                 </Link>
 
                 <button
-                  className="flex items-center p-1.5 border-white rounded-lg bg-[#65f157] text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
+                  className="flex items-center p-1.5 border-white rounded-lg bg-white text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
                   onClick={logout}
                 >
                   <span>Logout</span>
@@ -40,7 +57,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="flex items-center p-1.5 border-white rounded-lg bg-[#65f157] text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
+                className="flex items-center p-1.5 border-white rounded-lg bg-white text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
               >
                 <span>Login</span>
                 <ArrowRight className="size-5" />
