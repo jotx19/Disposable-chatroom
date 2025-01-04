@@ -48,12 +48,15 @@ export const useAuthStore = create((set, get) => ({
       set({ authUser: res.data });
       toast.success("Logged in successfully");
       get().connectSocket();
+      return res.data;  // Ensure the returned user is available
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
+      return null;  // Return null if login failed
     } finally {
       set({ isLoggingIn: false });
     }
   },
+  
 
   loginWithGoogle: async () => {
     set({ isLoggingInWithGoogle: true });

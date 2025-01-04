@@ -15,7 +15,7 @@ export const useRoomStore = create((set, get) => ({
       const res = await axiosInstance.get("/rooms");
       set({ rooms: res.data });
     } catch (error) {
-      toast.error("Failed to fetch rooms");
+      console.error("Failed to fetch Room")
     }
   },
 

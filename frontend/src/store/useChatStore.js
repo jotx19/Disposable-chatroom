@@ -17,7 +17,7 @@ export const useChatStore = create((set, get) => ({
       const res = await axiosInstance.get("/room/users");
       set({ rooms: res.data });
     } catch (error) {
-      toast.error("Failed to fetch rooms");
+      console.log("Failed to fetch rooms")
     } finally {
       set({ isRoomLoading: false });
     }

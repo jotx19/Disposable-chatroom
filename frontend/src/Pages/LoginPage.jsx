@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Link, useNavigate } from "react-router-dom"; // Added useNavigate for navigation
-import { Eye, EyeOff, Layers, Loader2, Lock, Mail } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, Lock, Mail, Loader2 } from "lucide-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,18 +10,17 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { login, isLoggingIn, showToast } = useAuthStore(); // Added showToast for feedback
-  const navigate = useNavigate(); // Initialize navigation
+  const { login, isLoggingIn } = useAuthStore();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await login(formData);
 
     if (user) {
-      showToast("Login successful!", "success"); // Show success toast
-      navigate("/chatbox"); // Redirect to /chatbox
+      navigate("/chatbox");
     } else {
-      showToast("Invalid login credentials", "error"); // Show error toast
+      console.log("Login failed");
     }
   };
 
@@ -31,14 +30,13 @@ const LoginPage = () => {
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
-              <Layers className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
+              <Mail className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white">Welcome Back</h1>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
-          {/* Email Input */}
           <div className="relative mb-4 w-full">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -50,7 +48,6 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Password Input */}
           <div className="relative mb-4 w-full">
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
@@ -65,11 +62,14 @@ const LoginPage = () => {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none text-sm md:text-base"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              {showPassword ? (
+                <EyeOff className="h-5 w-5 text-gray-400" />
+              ) : (
+                <Eye className="h-5 w-5 text-gray-400" />
+              )}
             </button>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="bg-blue-500 mt-6 text-white py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center hover:bg-blue-600 transition text-sm md:text-base mb-4"
@@ -86,7 +86,6 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* Sign up link */}
         <div className="mt-4 text-center">
           <p className="text-gray-500 text-sm">
             Don&apos;t have an account?{" "}
