@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const navigate = useNavigate(); // Correctly call the useNavigate hook
+  const navigate = useNavigate();
 
   const {
     getRooms,
@@ -62,17 +62,18 @@ const Sidebar = () => {
               </button>
             );
           })
+          
         ) : (
           <div className="flex justify-center items-center py-4">
             <button
-              onClick={() => navigate("/chatroom")} // Use navigate function here
-              className="w-full p-3 flex items-center gap-3 bg-[#2d3c4f] hover:bg-[#3b4f67] text-white rounded-2xl transition-all duration-300 ease-in-out"
+              onClick={() => navigate("/chatroom")}
+              className="w-full p-2 flex items-center gap-3 hover:bg-[#3b4f67] text-white rounded-2xl transition-all duration-300 ease-in-out"
             >
               <div className="size-12 uppercase bg-[#FFBDF7] text-black rounded-full flex justify-center items-center">
                 <Plus size={24} />
               </div>
-              <div className="text-left min-w-0">
-                <div className="font-bold text-white">Add Room</div>
+              <div className="text-left hidden lg:block min-w-0">
+                <div className="font-bold text-white hidden lg:block">Add Room</div>
               </div>
             </button>
           </div>
