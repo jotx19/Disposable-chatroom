@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Lock, Mail, Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +21,18 @@ const LoginPage = () => {
     if (user) {
       navigate("/chatbox");
     } else {
+      toast.error("Login failed");
       console.log("Login failed");
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      window.location.href = `${
+        import.meta.env.VITE_BACKEND_URL
+      }/api/auth/google`;
+    } catch (error) {
+      console.log("Error in google authentication", error);
     }
   };
 
@@ -32,7 +44,9 @@ const LoginPage = () => {
             <div className="bg-gray-200 p-3 rounded-full">
               <Mail className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-white">Welcome Back</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-white">
+              Welcome Back
+            </h1>
           </div>
         </div>
 
@@ -44,7 +58,9 @@ const LoginPage = () => {
               placeholder="Email"
               className="w-full h-12 pl-10 pr-3 rounded-3xl border border-white focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-white text-sm md:text-base bg-transparent"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
 
@@ -55,7 +71,9 @@ const LoginPage = () => {
               placeholder="Password"
               className="w-full h-12 pl-10 pr-3 rounded-3xl border border-white focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-white text-sm md:text-base bg-transparent"
               value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
             <button
               type="button"
@@ -86,10 +104,19 @@ const LoginPage = () => {
           </button>
         </form>
 
+        <button
+          className="bg-blue-500 mt-6 text-white py-2 px-4 rounded-3xl w-full md:w-3/4 flex items-center justify-center hover:bg-blue-600 transition text-sm md:text-base mb-4"
+          disabled={isLoggingIn}
+          onClick={() => loginWithGoogle()}
+        >
+          Login with Google
+        </button>
         <div className="mt-4 text-center">
           <p className="text-gray-500 text-sm">
             Don&apos;t have an account?{" "}
-            <Link to="/signup" className="text-blue-500">Create account</Link>
+            <Link to="/signup" className="text-blue-500">
+              Create account
+            </Link>
           </p>
         </div>
       </div>
