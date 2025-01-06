@@ -1,17 +1,16 @@
 import jwt from "jsonwebtoken";
 
-export const generateToken = (userId, res) =>{
+export const generateToken = (userId, res) => {
+  const payload = {
+    id: userId,
+  };
 
-    const token = jwt.sign({userId}, process.env.SECRET,{
-        expiresIn:"4d",
-    });
+  console.log("payload ", payload);
 
-    res.cookie("myToken",token,{
-        maxAge: 4 * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "strict",
-        // secure: false,
-        secure: process.env.STATUS !== "development"
-    });
-    return token;
+  const token = jwt.sign(payload, process.env.SECRET, {
+    expiresIn: "4d",
+  });
+
+  console.log("token", token);
+  return token;
 };

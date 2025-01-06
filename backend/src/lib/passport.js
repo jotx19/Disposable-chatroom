@@ -8,9 +8,9 @@ const configurePassport = () => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: `${process.env.BASE_URL}/auth/google/callback`,
+        callbackURL: `${process.env.BASE_URL}/api/auth/google/callback`,
       },
-      async (accessToken, refreshToken, profile, done) => {
+      async (accessToken, refreshToken, profile, cb) => {
         try {
           let user = await User.findOne({ googleId: profile.id });
           if (!user) {
@@ -21,7 +21,7 @@ const configurePassport = () => {
               profilepic: profile.photos[0]?.value || "",
             });
           }  
-          done(null, user);
+          cb(null, user);
         } catch (error) {
           done(error, null);
         }

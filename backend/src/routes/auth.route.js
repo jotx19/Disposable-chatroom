@@ -19,6 +19,6 @@ router.put("/update-profile", protectRoute, updateProfile);
 router.get("/check", protectRoute, checkAuth);
 
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
-router.get("/auth/google/callback", passport.authenticate("google", { session: false }),googleAuth);
+router.get("/google/callback", passport.authenticate("google", { session: false }),googleAuth);
 
 export default router;
