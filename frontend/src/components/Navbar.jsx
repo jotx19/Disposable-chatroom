@@ -33,7 +33,7 @@ const Navbar = () => {
               </>
             ) : (
               <Link
-                to="/setting"
+                to="/settings"
                 className="btn btn-sm flex items-center transition-colors"
               >
                 <Settings className="w-4 h-4 mr-2" />
