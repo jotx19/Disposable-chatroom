@@ -36,16 +36,15 @@ export const useChatStore = create((set, get) => ({
   },
 
   sendMessage: async (messageData) => {
-    const { selectedRoom, messages } = get();
+    const { selectedRoom } = get();
     if (!selectedRoom?._id) {
       console.error("Room ID is missing!");
       return;
     }
-
+  
     try {
-      const res = await axiosInstance.post(`/message/${selectedRoom._id}/sendMessage`, messageData);
-
-      set({ messages: [...messages, res.data] });
+      await axiosInstance.post(`/message/${selectedRoom._id}/sendMessage`, messageData);
+  
     } catch (error) {
       console.error("Failed to send message:", error);
     }
@@ -54,17 +53,24 @@ export const useChatStore = create((set, get) => ({
   subscribeToMessages: () => {
     const { selectedRoom } = get();
     if (!selectedRoom) return;
-
+  
     const socket = useAuthStore.getState().socket;
-
-    // Join the selected room
+  
     socket.emit("joinRoom", selectedRoom._id);
     socket.on("message", (message) => {
       if (message.room === selectedRoom._id) {
-        set({ messages: [...get().messages, message] });
+        set((state) => {
+          // Prevent duplicate messages
+          const messageExists = state.messages.some((msg) => msg._id === message._id);
+          if (!messageExists) {
+            return { messages: [...state.messages, message] };
+          }
+          return state;
+        });
       }
     });
   },
+  
 
   unsubscribeFromMessages: () => {
     const socket = useAuthStore.getState().socket;
