@@ -6,19 +6,19 @@ export default function Marquee() {
   useEffect(() => {
     const marqueeElement = marqueeRef.current;
     const marqueeContent = marqueeElement.innerHTML;
-    marqueeElement.innerHTML = marqueeContent + marqueeContent; // Duplicate content for infinite loop
+    marqueeElement.innerHTML = marqueeContent + marqueeContent; 
     const totalWidth = marqueeElement.scrollWidth;
     let position = 0;
 
     const moveMarquee = () => {
-      position -= 0.2; // Slower scroll speed
+      position -= 0.2; 
       if (position <= -totalWidth / 2) {
-        position = 0; // Reset the position when it reaches the end
+        position = 0; 
       }
       marqueeElement.style.transform = `translateX(${position}px)`;
     };
 
-    const intervalId = setInterval(moveMarquee, 16); // Slower speed: update position every 16ms (~60fps)
+    const intervalId = setInterval(moveMarquee, 16); 
 
     return () => {
       clearInterval(intervalId);
@@ -26,14 +26,14 @@ export default function Marquee() {
   }, []);
 
   return (
-    <div className="relative z-30 overflow-hidden rounded-xl h-[15vh] bg-[#004d43] flex items-center justify-center md:h-[20vh] w-full">
+    <div className="relative z-30 overflow-hidden h-[15vh] bg-[#004d43] flex items-center justify-center md:h-[20vh] w-full">
       <div ref={marqueeRef} className="flex whitespace-nowrap w-full">
         <h1 className="text-6xl flex justify-center font-custom1 text-white md:text-8xl border-b-[1px] border-t-[1px] border-white">
-          <span className="font-custom">👋 Hi there!  </span>
-          <span className="font-custom">  Bonjour!   </span>
-          <span className="font-futuras">🎉 Let's Go!   </span>
-          <span className="font-custom"> Chat Now!  </span>
-          <span className="font-custom">🚀 Let's Connect!  </span>
+          <span className="font-custom">/////////</span>
+          <span className="font-custom">/////////</span>
+          <span className="font-custom">/////////</span>
+          <span className="font-custom"> Chat Now 🚀  </span>
+          <span className="font-custom">/////////</span>
         </h1>
       </div>
     </div>

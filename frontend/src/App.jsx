@@ -14,7 +14,7 @@ import ChatBoxPage from './Pages/ChatBoxPage';
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
-  const location = useLocation(); // Get the current route
+  const location = useLocation(); 
 
   useEffect(() => {
     checkAuth();
@@ -27,7 +27,6 @@ const App = () => {
       </div>
     );
 
-  // Pages where Navbar should not be displayed
   const noNavbarRoutes = ['/login', '/signup'];
 
   return (

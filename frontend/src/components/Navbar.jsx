@@ -6,7 +6,7 @@ const Navbar = () => {
   const { logout, authUser } = useAuthStore();
 
   return (
-    <header className="font-custom text-white border rounded-2xl border-[#B3B2AD] fixed w-[calc(100%-1rem)] top-2 z-40 backdrop-blur-lg bg-base-100/80 mx-2">
+    <header className="font-custom text-white rounded-2xl border-[1px] border-[#27272A] fixed w-[calc(100%-1rem)] top-2 z-40 backdrop-blur-lg bg-base-100/80 mx-2">
       <div className="container mx-auto px-2 h-14">
         <div className="flex items-center justify-between h-full">
           <div className="flex items-center gap-8">
@@ -60,7 +60,7 @@ const Navbar = () => {
                 className="flex items-center p-1.5 border-white rounded-lg bg-white text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
               >
                 <span>Login</span>
-                <ArrowRight className="size-5" />
+                {/* <ArrowRight className="size-5" /> */}
               </Link>
             )}
           </div>

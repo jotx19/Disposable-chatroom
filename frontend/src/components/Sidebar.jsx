@@ -21,8 +21,8 @@ const Sidebar = () => {
   }, [getRooms]);
 
   return (
-    <aside className="h-full w-16 bg-[#171717] lg:w-52 rounded-l-3xl border-base-300 flex flex-col transition-all duration-200">
-      <div className="overflow-y-auto w-full py-3">
+    <aside className="h-full w-16 bg-transparent border-[1px] border-[#27272A] lg:w-52 rounded-l-lg border-base-300 flex flex-col transition-all duration-200">
+      <div className="overflow-y-auto w-full p-2 gap-2">
         {Array.isArray(rooms) && rooms.length > 0 ? (
           rooms.map((room) => {
             const onlineCount = room.members.filter((member) =>
@@ -38,7 +38,7 @@ const Sidebar = () => {
                   hover:bg-base-300 transition-colors
                   ${
                     selectedRoom?._id === room._id
-                      ? "bg-[#] border rounded-l-3xl ring-[0.3px] ring-white"
+                      ? "bg-[#27272A] rounded-l-3xl ring-[0.3px] ring-[#27272A]"
                       : ""
                   }
                 `}

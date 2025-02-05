@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Eye, EyeOff, Layers, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
+import { Eye, EyeOff, Layers, Loader, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
@@ -35,14 +35,14 @@ const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="shadow-lg bg-[#171717] rounded-lg p-6 md:p-10 w-full max-w-lg">
+      <div className="shadow-lg border-[2px] border-[#27272A] rounded-lg p-6 md:p-10 w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
-              <Layers className="text-blue-500 h-8 w-8 md:h-10 md:w-10" />
+              <Layers className="text-black h-8 w-8 md:h-10 md:w-10" />
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-white">Create Account</h1>
-            <p className="text-white text-sm md:text-base">Get started with your free account</p>
+            <h1 className="text-xl md:text-2xl font-bold text-[#FAFAFA]">Create Account</h1>
+            <p className="text-[#FAFAFA] text-sm md:text-base">Get started with your free account</p>
           </div>
         </div>
 
@@ -53,7 +53,7 @@ const SignUpPage = () => {
             <input
               type="text"
               placeholder="Full Name"
-              className="w-full h-12 pl-10 pr-3 rounded-3xl border border-white focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-white text-sm md:text-base bg-transparent"
+              className="w-full h-12 pl-10 pr-3 rounded-lg border border-[#27272A] focus:ring-1 focus:ring-white focus:outline-none placeholder-gray-400 text-white text-base md:text-base bg-transparent"
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
@@ -64,8 +64,8 @@ const SignUpPage = () => {
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="email"
-              placeholder="Email"
-              className="w-full h-12 pl-10 pr-3 rounded-3xl border border-white focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-white text-sm md:text-base bg-transparent"
+              placeholder="user@gmail.com"
+              className="w-full h-12 pl-10 pr-3 rounded-lg border border-[#27272A] focus:ring-1 focus:ring-white focus:outline-none placeholder-gray-400 text-white text-base md:text-base bg-transparent"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
@@ -76,8 +76,8 @@ const SignUpPage = () => {
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              className="w-full h-12 pl-10 pr-3 rounded-3xl border border-white focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-white text-sm md:text-base bg-transparent"
+              placeholder="xxxxxx"
+              className="w-full h-12 pl-10 pr-3 rounded-lg border border-[#27272A] focus:ring-1 focus:ring-white focus:outline-none placeholder-gray-400 text-white text-base md:text-base bg-transparent"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
@@ -86,20 +86,23 @@ const SignUpPage = () => {
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 focus:outline-none text-sm md:text-base"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? "Hide" : "Show"}
+              {showPassword ? (
+                <EyeOff className="h-5 w-5 text-gray-400" />
+              ) : (
+                <Eye className="h-5 w-5 text-gray-400" />
+              )}
             </button>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-blue-500 text-white mt-11 py-2 px-4 rounded-3xl w-2/3 md:w-2/3 flex items-center justify-center hover:bg-blue-600 transition text-sm md:text-base mb-4"
+            className="bg-[#E2E2E2] text-black mt-11 py-2 px-4 rounded-lg w-1/3 md:w-1/2 flex items-center justify-center hover:bg-[#e3e3e3] transition text-base md:text-base mb-4"
             disabled={isSigningUp}
           >
             {isSigningUp ? (
               <>
-                <Loader2 className="animate-spin mr-2" />
-                Loading...
+                <Loader className="animate-spin mr-2" />
               </>
             ) : (
               "Create Account"
