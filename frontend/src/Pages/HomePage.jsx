@@ -86,11 +86,11 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center px-4 py-8 sm:px-6 md:px-8 lg:px-12 xl:px-16">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#f2f2fa] mb-6">
+      <div className="min-h-[40vh] flex flex-col mt-10 items-center justify-center text-center px-4 py-8 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-[#f2f2fa] mb-6">
           Experience the Future of Live Chat
         </h2>
-        <p className="text-base p-5 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-3xl leading-relaxed">
+        <p className="text-base p-5 sm:text-lg md:text-xl lg:text-2xl xl:text-xl text-gray-400 max-w-3xl leading-relaxed">
           FlikChat makes chatting seamless and instant. Click "Get Started" to
           begin, then create a room by adding a name—you will receive a unique
           code. Share this code with friends so they can join the same room. To
