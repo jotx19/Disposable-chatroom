@@ -32,14 +32,14 @@ const HomePage = () => {
         <div className="flex flex-row justify-center gap-5 ">
           <Link
             to="/chatbox"
-            className="w-24 sm:w-36 h-8 sm:h-11 flex justify-center items-center bg-[#f2f2f2] rounded-lg hover:bg-[#d8d8da] text-black"
+            className="w-24 sm:w-36 h-11 sm:h-11 flex justify-center items-center bg-[#f2f2f2] rounded-lg hover:bg-[#d8d8da] text-black"
           >
             <span className="text-base sm:text-lg">Rooms</span>
             <BoxIcon className="w-4 sm:w-5 h-4 sm:h-5 ml-2" />
           </Link>
           <Link
             to="/chatroom"
-            className="w-xl p-2 sm:w-36 h-8 sm:h-11 flex justify-center items-center bg-transparent border-[1px] border-[#27272A] hover:bg-[#27272A] rounded-lg text-[#f2f2f2] "
+            className="w-xl p-2 sm:w-36 h-11 sm:h-11 flex justify-center items-center bg-transparent border-[1px] border-[#27272A] hover:bg-[#27272A] rounded-lg text-[#f2f2f2] "
           >
             <span className="text-base sm:text-lg">Get Started</span>
             <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2 -rotate-45" />
