@@ -14,7 +14,7 @@ import ChatBoxPage from './Pages/ChatBoxPage';
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
-  const location = useLocation(); 
+  const location = useLocation();
 
   useEffect(() => {
     checkAuth();
@@ -31,8 +31,8 @@ const App = () => {
 
   return (
     <div>
-      {!noNavbarRoutes.includes(location.pathname) && <Navbar />} {/* Conditionally render Navbar */}
-      
+      {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
+
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
@@ -43,9 +43,39 @@ const App = () => {
         <Route path='/chatbox' element={authUser ? <ChatBoxPage /> : <Navigate to="/login" />} />
       </Routes>
 
-      <Toaster position="bottom-center" />
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            backgroundColor: '#09090B', 
+            color: '#fff', 
+            padding: '10px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            border: '1px solid #27272A',  
+          },
+          success: {
+            style: {
+              backgroundColor: '#001F10',
+              color: '#5AF2A6', 
+            },
+          },
+          error: {
+            style: {
+              backgroundColor: '#2D0608',
+              color: '#FE9EA1', 
+            },
+          },
+          loading: {
+            style: {
+              backgroundColor: '#f0ad4e', 
+              color: '#fff', 
+            },
+          },
+        }}
+      />
     </div>
   );
 };
 
-export default App
+export default App;

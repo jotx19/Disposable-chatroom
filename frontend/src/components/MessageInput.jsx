@@ -58,7 +58,7 @@ const MessageInput = () => {
   }
 
   return (
-    <div className="p-4 w-full">
+    <div className="w-full">
       {imagePreview && (
           <div className="relative w-20 h-20 mb-3">
             <img
@@ -76,7 +76,7 @@ const MessageInput = () => {
           </div>
         )}
 
-      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#1c1c1c] text-white rounded-xl shadow-xl gap-2">
+      <form onSubmit={handleSendMessage} className="flex items-center w-full p-2 bg-[#1c1c1c] text-white rounded-r-lg shadow-xl gap-2">
         <input
           type="text"
           className="w-full p-3 bg-transparent border border-base-300 input border-black input-bordered rounded-3xl text-white focus:outline-none font-custom input-base sm:input-base"

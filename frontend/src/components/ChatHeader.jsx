@@ -79,7 +79,7 @@ const ChatHeader = () => {
 
   return (
 <div className="bg-[#171717] rounded-r-2xl border-base-300">
-  <div className="flex items-center justify-between p-5">
+  <div className="flex items-center justify-between p-6">
     <div className="flex items-center gap-3">
       <h3 className="font-medium uppercase">
         {selectedRoom.name}
