@@ -8,7 +8,7 @@ const HomePage = () => {
     <>
       <div className="min-h-screen gap-16 flex mt-14 flex-col justify-start items-center px-4 lg:px-8">
         <div className="text-center mt-28">
-          <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 leading-tight bg-gradient-to-r from-white to-purple-600 text-transparent bg-clip-text font-bold tracking-tight">
+          <h1 className="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-8 leading-tight bg-gradient-to-r from-white to-purple-600 text-transparent bg-clip-text font-bold tracking-tight">
             Welcome to FlikChat
             <br /> Connect, Chat & Share Instantly
           </h1>
