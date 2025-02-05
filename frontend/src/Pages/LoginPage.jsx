@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Lock, Mail, Loader } from "lucide-react";
+import { Eye, EyeOff, Lock, Mail, Loader, LockKeyholeOpen } from "lucide-react";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,9 +30,10 @@ const LoginPage = () => {
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
-              <Mail className="text-black h-8 w-8 md:h-10 md:w-10" />
+              <LockKeyholeOpen className="text-black h-8 w-8 md:h-10 md:w-10" />
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-white">Welcome Back</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-white">Sign In</h1>
+            <p className="text-[#999FAB] text-sm -mt-2 mb-8 md:text-base">Get started with your free account</p>
           </div>
         </div>
 

@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  MessageCircle,
-  Clock,
-  Users,
-  BoxIcon,
-} from "lucide-react";
+import { ArrowRight, MessageCircle, Clock, Users, BoxIcon } from "lucide-react";
 import Marquee from "../components/Marquee";
 
 const HomePage = () => {
@@ -40,7 +34,7 @@ const HomePage = () => {
             to="/chatbox"
             className="w-24 sm:w-36 h-8 sm:h-11 flex justify-center items-center bg-[#f2f2f2] rounded-lg hover:bg-[#d8d8da] text-black"
           >
-            <span className="text-base sm:text-lg">My Rooms</span>
+            <span className="text-base sm:text-lg">Rooms</span>
             <BoxIcon className="w-4 sm:w-5 h-4 sm:h-5 ml-2" />
           </Link>
           <Link
@@ -92,20 +86,21 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center px-2 py-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#f2f2fa] mb-6">
+      <div className="min-h-[40vh] flex flex-col items-center justify-center text-center px-4 py-8 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#f2f2fa] mb-6">
           Experience the Future of Live Chat
         </h2>
-        <p className="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        <p className="text-base p-5 sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-300 max-w-3xl leading-relaxed">
           FlikChat makes chatting seamless and instant. Click "Get Started" to
           begin, then create a room by adding a name—you will receive a unique
           code. Share this code with friends so they can join the same room. To
           view your active rooms, click "Go to Room", where all your joined
           rooms are listed. Select any room to enter and start chatting freely.
           No signups, no history—just simple, real-time conversations that
-          disappear when you arere done.
+          disappear when you are done.
         </p>
       </div>
+
       <Marquee />
     </>
   );

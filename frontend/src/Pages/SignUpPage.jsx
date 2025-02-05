@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
-import { Eye, EyeOff, Layers, Loader, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
+import { EarthLock, Eye, EyeOff, Layers, Loader, Loader2, Lock, Mail, MessageSquare, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
@@ -39,10 +39,10 @@ const SignUpPage = () => {
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
-              <Layers className="text-black h-8 w-8 md:h-10 md:w-10" />
+              <EarthLock className="text-black h-8 w-8 md:h-10 md:w-10" />
             </div>
             <h1 className="text-xl md:text-2xl font-bold text-[#FAFAFA]">Create Account</h1>
-            <p className="text-[#FAFAFA] text-sm md:text-base">Get started with your free account</p>
+            <p className="text-[#999FAB] text-sm -mt-2 mb-6 md:text-base">Get started with your free account</p>
           </div>
         </div>
 
@@ -97,7 +97,7 @@ const SignUpPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-[#E2E2E2] text-black mt-11 py-2 px-4 rounded-lg w-1/3 md:w-1/2 flex items-center justify-center hover:bg-[#e3e3e3] transition text-base md:text-base mb-4"
+            className="bg-[#E2E2E2] text-black mt-11 py-2 px-4 rounded-lg w-1/2 md:w-1/2 flex items-center justify-center hover:bg-[#e3e3e3] transition text-base md:text-base mb-4"
             disabled={isSigningUp}
           >
             {isSigningUp ? (
