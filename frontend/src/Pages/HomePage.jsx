@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, MessageCircle, Clock, Users, BoxIcon } from "lucide-react";
 import Marquee from "../components/Marquee";
+import Footer from "../components/Footer";
 
 const HomePage = () => {
   return (
@@ -97,11 +98,12 @@ const HomePage = () => {
           view your active rooms, click "Go to Room", where all your joined
           rooms are listed. Select any room to enter and start chatting freely.
           No signups, no history—just simple, real-time conversations that
-          disappear when you are done.
+          disappear when you are done. 
         </p>
       </div>
 
       <Marquee />
+      <Footer/>
     </>
   );
 };
