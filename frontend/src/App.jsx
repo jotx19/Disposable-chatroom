@@ -9,16 +9,15 @@ import ChatRoomPage from './Pages/ChatRoomPage';
 import { Toaster } from 'react-hot-toast';
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuthStore } from './store/useAuthStore';
-import { Loader } from 'lucide-react';
 import ChatBoxPage from './Pages/ChatBoxPage';
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const location = useLocation();
 
-  useEffect(() => {
-    checkAuth();
-  }, [checkAuth]);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, [checkAuth]);
 
   // if (isCheckingAuth && !authUser)
   //   return (

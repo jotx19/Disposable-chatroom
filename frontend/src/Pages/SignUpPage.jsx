@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { EarthLock, Eye, EyeOff, Loader, Lock, Mail, User } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import toast from "react-hot-toast";
 
@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="shadow-lg border-[2px] border-[#27272A] rounded-lg p-6 md:p-10 w-full max-w-lg">
+      <div className="shadow-lg rounded-lg p-6 md:p-10 w-full max-w-lg">
         <div className="text-center mb-6">
           <div className="flex flex-col items-center gap-3">
             <div className="bg-gray-200 p-3 rounded-full">
@@ -64,7 +64,7 @@ const SignUpPage = () => {
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type="email"
-              placeholder="user@gmail.com"
+              placeholder="name@domain.com"
               className="w-full h-12 pl-10 pr-3 rounded-lg border border-[#27272A] focus:ring-1 focus:ring-white focus:outline-none placeholder-gray-400 text-white text-base md:text-base bg-transparent"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -76,7 +76,7 @@ const SignUpPage = () => {
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="xxxxxx"
+              placeholder="********"
               className="w-full h-12 pl-10 pr-3 rounded-lg border border-[#27272A] focus:ring-1 focus:ring-white focus:outline-none placeholder-gray-400 text-white text-base md:text-base bg-transparent"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -97,7 +97,7 @@ const SignUpPage = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-[#E2E2E2] text-black mt-11 py-2 px-4 rounded-lg w-1/2 md:w-1/2 flex items-center justify-center hover:bg-[#e3e3e3] transition text-base md:text-base mb-4"
+            className="bg-[#E2E2E2] text-black mt-7 py-2 px-4 rounded-lg w-1/2 md:w-1/2 flex items-center justify-center hover:bg-[#e3e3e3] transition text-base md:text-base mb-4"
             disabled={isSigningUp}
           >
             {isSigningUp ? (
@@ -112,7 +112,7 @@ const SignUpPage = () => {
         </form>
 
         {/* Login link */}
-        <div className="mt-4 text-center">
+        <div className="mt-2 text-center">
           <p className="text-gray-500 text-sm">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-500">Sign in</Link>

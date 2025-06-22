@@ -101,8 +101,6 @@ const HomePage = () => {
           disappear when you are done. 
         </p>
       </div>
-
-      <Marquee />
       <Footer/>
     </>
   );
