@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://chatroom.vercel.app", "http://localhost:5173"],
+        origin: ["https://flikchat.vercel.app", "http://localhost:5173"],
     }
 });
 

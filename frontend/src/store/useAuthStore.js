@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios";
 import { io } from "socket.io-client";
 import toast from "react-hot-toast";
 
-const BASE_URL = import.meta.env.MODE === "https://disposable-chatroom.onrender.com";
+const BASE_URL = "https://disposable-chatroom.onrender.com";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
