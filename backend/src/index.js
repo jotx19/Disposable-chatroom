@@ -7,7 +7,7 @@ import messageRoute from "./routes/message.route.js"
 import cors from "cors"
 import path from "path"
 
-import { app, server } from "./lib/socket.js";
+import { server } from "./lib/socket.js";
 import { connectDB } from "./lib/db.js";
 import { googleAuth } from "./controllers/auth.controller.js";
 
