@@ -69,16 +69,7 @@ export const login = async (req, res)=>{
         
     }
 };
-export const googleAuth = async (req, res) => {
-    try {
-        const user = req.user; 
-        generateToken(user._id, res);
-        res.redirect(process.env.CLIENT_URL)
-    } catch (error) {
-        console.error("Error during Google authentication:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-};
+
 export const logout = (req, res)=>{
     try {
         res.cookie("myToken","", {maxAge:"0"})
