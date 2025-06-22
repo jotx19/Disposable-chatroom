@@ -7,12 +7,11 @@ import messageRoute from "./routes/message.route.js"
 import cors from "cors"
 import path from "path"
 
-import { server } from "./lib/socket.js";
+import { app, server } from "./lib/socket.js";
 import { connectDB } from "./lib/db.js";
 import { googleAuth } from "./controllers/auth.controller.js";
 
 dotenv.config()
-const app = express();
 const PORT = process.env.PORT
 const __dirname = path.resolve();
 
