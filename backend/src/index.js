@@ -9,7 +9,6 @@ import path from "path"
 
 import { app, server } from "./lib/socket.js";
 import { connectDB } from "./lib/db.js";
-import { googleAuth } from "./controllers/auth.controller.js";
 
 dotenv.config()
 const PORT = process.env.PORT
@@ -40,17 +39,6 @@ if (process.env.NODE_ENV === "production") {
     });
   }
   
-
-//Testing
-// app.get("/", (req, res) => {
-//     res.send('<a href="/api/auth/google">TRY</a>');
-//   });
-
-app.get("/auth/google/callback",
-    passport.authenticate('google', { session: false }),
-    googleAuth
-);
-
 
 server.listen(process.env.PORT, ()=>{
     console.log("Server is running: ",PORT);
