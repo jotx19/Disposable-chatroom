@@ -75,10 +75,10 @@ const ChatRoomPage = () => {
                 className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-md"
               /> */}
               <div className="flex-1 flex-col p-4 justify-between">
-                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-black">
                 To  Join Room
                 </div>
-                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FF4104]">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-black">
                   Enter the code
                 </div>
               </div>
@@ -131,7 +131,7 @@ const ChatRoomPage = () => {
                 <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
                   Create Room
                 </div>
-                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-[#FFBDF7]">
+                <div className="text-xl sm:text-2xl font-bold uppercase flex font-futuras text-white">
                   Enter the Name
                 </div>
               </div>
