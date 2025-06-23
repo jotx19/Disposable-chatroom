@@ -11,6 +11,8 @@ import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuthStore } from './store/useAuthStore';
 import ChatBoxPage from './Pages/ChatBoxPage';
 
+useAuthStore.getState().checkAuth();
+
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const location = useLocation();

@@ -17,7 +17,7 @@ const Navbar = () => {
               <div className="size-9 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Layers className="w-5 h-5 text-primary" />
               </div>
-              <h1 className="text-lg font-bold">FlikChat</h1>
+              <h1 className="text-lg font">FlikChat</h1>
             </Link>
           </div>
 
@@ -57,7 +57,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/login"
-                className="flex items-center p-1.5 border-white rounded-lg bg-white text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
+                className="flex items-center px-6 p-1.5 border-white rounded-md bg-white text-black hover:bg-[#ff91e7] hover:scale-105 border-transparent hover:border-white"
               >
                 <span>Login</span>
                 {/* <ArrowRight className="size-5" /> */}
